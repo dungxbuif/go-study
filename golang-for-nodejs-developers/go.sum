@@ -1,0 +1,14 @@
+github.com/go-shadow/moment v0.0.0-20140422073900-e837f27dad94 h1:tA+lFu96a7d+FB+gN02ql4cJ83F6Xz5zPgNNPExyBS0=
+github.com/go-shadow/moment v0.0.0-20140422073900-e837f27dad94/go.mod h1:eicZt2izT+JBP5l8jOzF/KWFbTdIwzbkqGAUaHLZKIU=
+github.com/gopherjs/gopherjs v1.17.2 h1:fQnZVsXk8uxXIStYb0N4bGk7jeyTalG/wsZjQ25dO0g=
+github.com/gopherjs/gopherjs v1.17.2/go.mod h1:pRRIvn/QzFLrKfvEz3qUuEhtE/zLCWfreZ6J5gM2i+k=
+github.com/jtolds/gls v4.20.0+incompatible h1:xdiiI2gbIgH/gLH7ADydsJ1uDOEzR8yvV7C0MuV77Wo=
+github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfVYBRgL+9YlvaHOwJU=
+github.com/mattn/go-sqlite3 v1.10.0 h1:jbhqpg7tQe4SupckyijYiy0mJJ/pRyHvXf7JdWK860o=
+github.com/mattn/go-sqlite3 v1.10.0/go.mod h1:FPy6KqzDD04eiIsT53CuJW3U88zkxoIYsOqkbpncsNc=
+github.com/miguelmota/golang-for-nodejs-developers/examples/greeter_go v0.0.0-20190601230029-4f352120fdaf h1:QD0fskujjKn16Q+2SjiSi+ZHLRnI2uqVgChg3TefORc=
+github.com/miguelmota/golang-for-nodejs-developers/examples/greeter_go v0.0.0-20190601230029-4f352120fdaf/go.mod h1:+4shTU1b876dbREoyQA6rzhjC+XviWvWY7ePi5BpTto=
+github.com/smarty/assertions v1.15.0 h1:cR//PqUBUiQRakZWqBiFFQ9wb8emQGDb0HeGdqGByCY=
+github.com/smarty/assertions v1.15.0/go.mod h1:yABtdzeQs6l1brC900WlRNwj6ZR55d7B+E8C6HtKdec=
+github.com/smartystreets/goconvey v1.8.1 h1:qGjIddxOk4grTu9JPOU31tVfq3cNdBlNa5sSznIX1xY=
+github.com/smartystreets/goconvey v1.8.1/go.mod h1:+/u4qLyY6x1jReYOp7GOM2FSt8aP9CzCZL03bI28W60=

@@ -1,6 +1,57 @@
 # Go (Golang) Learning Journey 🚀
 
-Chào mừng bạn đến với lộ trình học Go. Tài liệu này được tổng hợp từ nhiều nguồn uy tín và kinh nghiệm thực tế (bao gồm so sánh với Node.js) để giúp bạn nắm bắt Go một cách hệ thống và hiệu quả nhất.
+Tự học Go
+
+## 📑 Mục lục
+
+- [Go (Golang) Learning Journey 🚀](#go-golang-learning-journey-)
+   - [📑 Mục lục](#-mục-lục)
+   - [🏁 1. Giới thiệu về Go](#-1-giới-thiệu-về-go)
+      - [Đặc điểm cốt lõi:](#đặc-điểm-cốt-lõi)
+   - [🛠 2. Tooling \& Workspace](#-2-tooling--workspace)
+      - [Lệnh cơ bản](#lệnh-cơ-bản)
+         - [Quy tắc \& Cú pháp quan trọng](#quy-tắc--cú-pháp-quan-trọng)
+      - [Cấu trúc Project khuyến nghị](#cấu-trúc-project-khuyến-nghị)
+   - [📜 3. Cú pháp cơ bản (Basic Syntax)](#-3-cú-pháp-cơ-bản-basic-syntax)
+      - [3. Khai báo Biến (Variables)](#3-khai-báo-biến-variables)
+         - [Các cách khai báo chính](#các-cách-khai-báo-chính)
+         - [Khai báo không khởi tạo (Zero Values)](#khai-báo-không-khởi-tạo-zero-values)
+         - [So sánh `var` và `:=`](#so-sánh-var-và-)
+         - [Khai báo nhiều biến](#khai-báo-nhiều-biến)
+         - [Quy tắc đặt tên biến (Naming Rules)](#quy-tắc-đặt-tên-biến-naming-rules)
+         - [Hằng số (Constants) \& Iota](#hằng-số-constants--iota)
+         - [Hàm Xuất dữ liệu (Output Functions)](#hàm-xuất-dữ-liệu-output-functions)
+         - [Hệ thống Toán tử (Operators)](#hệ-thống-toán-tử-operators)
+      - [Kiểu dữ liệu cơ bản](#kiểu-dữ-liệu-cơ-bản)
+   - [⚙️ 4. Control Flow](#️-4-control-flow)
+      - [If / Else](#if--else)
+      - [Loops (Chỉ có `for`)](#loops-chỉ-có-for)
+      - [Switch](#switch)
+   - [📦 5. Data Structures](#-5-data-structures)
+      - [Arrays \& Slices](#arrays--slices)
+         - [🧠 Cấu trúc chuyên sâu: Slice Header](#-cấu-trúc-chuyên-sâu-slice-header)
+      - [🚀 Phân tích chuyên sâu: Cơ chế Append \& Reallocation](#-phân-tích-chuyên-sâu-cơ-chế-append--reallocation)
+         - [1. Cơ chế tính toán "New Capacity" (Growth Algorithm)](#1-cơ-chế-tính-toán-new-capacity-growth-algorithm)
+         - [2. Quy trình "Allocation \& Copy" dưới nắp capo](#2-quy-trình-allocation--copy-dưới-nắp-capo)
+         - [3. Tại sao `make([]T, len, cap)` lại tối ưu vượt trội?](#3-tại-sao-maket-len-cap-lại-tối-ưu-vượt-trội)
+         - [4. Phân tích hiệu năng (Benchmark thực tế)](#4-phân-tích-hiệu-năng-benchmark-thực-tế)
+         - [5. Lời khuyên cho Senior](#5-lời-khuyên-cho-senior)
+      - [String](#string)
+      - [UTF-8, Rune và Byte](#utf-8-rune-và-byte)
+      - [Maps (Key-Value)](#maps-key-value)
+      - [Structs (Thay thế Class)](#structs-thay-thế-class)
+      - [Methods (Hàm dành riêng cho Struct)](#methods-hàm-dành-riêng-cho-struct)
+   - [🧬 6. Concurrency (Goroutines \& Channels)](#-6-concurrency-goroutines--channels)
+   - [🛡️ 7. Context (Quản lý vòng đời và Cancellation)](#-7-context-quản-lý-vòng-đời-và-cancellation)
+   - [8. Các từ khóa đặc biệt (`defer`, `panic`, `recover`)](#8-các-từ-khóa-đặc-biệt-defer-panic-recover)
+      - [Defer](#defer)
+      - [Panic \& Recover](#panic--recover)
+   - [⚠️ 9. Xử lý lỗi (Error Handling)](#️-9-xử-lý-lỗi-error-handling)
+   - [🔗 10. So sánh Go với Node.js (Cho Developer)](#-10-so-sánh-go-với-nodejs-cho-developer)
+- [Xử lý đồng thời trong Golang](#xử-lý-đồng-thời-trong-golang)
+   - [❓ 11. Q\&A Quan trọng](#-qa-quan-trọng)
+      - [1. Số thực (Float) được lưu thế nào?](#1-số-thực-float-được-lưu-thế-nào)
+      - [2. Interface trong Go có gì đặc biệt?](#2-interface-trong-go-có-gì-đặc-biệt)
 
 ---
 
@@ -15,6 +66,15 @@ Go là ngôn ngữ lập trình mã nguồn mở được phát triển bởi Go
 - **Đồng thời (Concurrency):** Hỗ trợ hàng triệu luồng đồng thời (Goroutines) cực kỳ nhẹ.
 - **Đơn giản:** Chỉ có 25 từ khóa, không có lớp (class), không kế thừa phức tạp.
 - **Hệ sinh thái Cloud-Native:** Là ngôn ngữ của Docker, Kubernetes, Terraform.
+
+Bonus:
+
+- process-oriented
+- `duck typing` được thể hiện qua
+   - `functions`,
+   - `methods`,
+   - `interfaces`,
+- Mô hình `concurrent programming` và `error handling` cũng được giới thiệu sơ qua
 
 ---
 
@@ -124,7 +184,9 @@ var (
 - **Snake Case:** `my_variable_name` (Ít dùng trong Go).
 
 > [!IMPORTANT]
+>
 > ### 🔐 Cơ chế Quản lý Truy cập (Access Control)
+>
 > Trong Go, không có từ khóa `public`, `private` hay `protected`. Quyền truy cập được quyết định hoàn toàn bằng **chữ cái đầu tiên** của tên định danh:
 >
 > 1. **Exported (Công khai):** Bắt đầu bằng **CHỮ HOA**. Có thể được truy cập từ bất kỳ package nào khác.
@@ -254,13 +316,13 @@ default:
 
 ![Array vs Slice in Go](./images/array_vs_slice.png)
 
-| Đặc điểm | Array (Mảng) | Slice (Lát cắt) |
-| :--- | :--- | :--- |
-| Kích thước | Cố định khi khai báo. | "Linh hoạt, có thể co giãn." |
-| Kiểu dữ liệu | Kích thước là một phần của kiểu dữ liệu (ví dụ [3]int khác [5]int). | Không chứa kích thước trong kiểu dữ liệu (ví dụ []int). |
-| Vùng nhớ | Lưu trữ giá trị trực tiếp. | Lưu tham chiếu đến một Array ngầm định (Underlying Array). |
-| Cách truyền (Pass by) | Truyền giá trị (copy toàn bộ mảng). | Truyền tham chiếu (chỉ copy cấu trúc Slice Header). |
-| Tính phổ biến | Ít dùng trực tiếp trong logic nghiệp vụ. | Sử dụng thường xuyên trong hầu hết mọi trường hợp. |
+| Đặc điểm              | Array (Mảng)                                                        | Slice (Lát cắt)                                            |
+| :-------------------- | :------------------------------------------------------------------ | :--------------------------------------------------------- |
+| Kích thước            | Cố định khi khai báo.                                               | "Linh hoạt, có thể co giãn."                               |
+| Kiểu dữ liệu          | Kích thước là một phần của kiểu dữ liệu (ví dụ [3]int khác [5]int). | Không chứa kích thước trong kiểu dữ liệu (ví dụ []int).    |
+| Vùng nhớ              | Lưu trữ giá trị trực tiếp.                                          | Lưu tham chiếu đến một Array ngầm định (Underlying Array). |
+| Cách truyền (Pass by) | Truyền giá trị (copy toàn bộ mảng).                                 | Truyền tham chiếu (chỉ copy cấu trúc Slice Header).        |
+| Tính phổ biến         | Ít dùng trực tiếp trong logic nghiệp vụ.                            | Sử dụng thường xuyên trong hầu hết mọi trường hợp.         |
 
 - **Array:** Kích thước cố định. `var a [3]int = [3]int{1, 2, 3}`.
    - Fixed length
@@ -268,7 +330,8 @@ default:
    - Indexable
    - Contigous in Mem
 - **Slice:** Linh hoạt hơn, là "view" của một array.
-<!-- Bạn có muốn tìm hiểu về cách dùng Pointer to Slice (ví dụ *[]int) và tại sao trong 99% trường hợp chúng ta không bao giờ nên dùng nó không? -->
+ <!-- Bạn có muốn tìm hiểu về cách dùng Pointer to Slice (ví dụ *[]int) và tại sao trong 99% trường hợp chúng ta không bao giờ nên dùng nó không? -->
+
 ```go
 // Tạo slice bằng make
 s := make([]int, 5, 10) // len=5, cap=10
@@ -295,6 +358,7 @@ copy(dst, s1)
 #### 🧠 Cấu trúc chuyên sâu: Slice Header
 
 Bản chất của Slice không chứa dữ liệu, nó là một cấu trúc dữ liệu nhỏ (Slice Header) gồm 3 trường:
+
 1. **Pointer**: Trỏ đến vị trí bắt đầu của slice trong mảng ngầm định (Underlying Array).
 2. **Length**: Số lượng phần tử hiện có trong slice.
 3. **Capacity**: Số lượng phần tử tối đa mà slice có thể chứa tính từ vị trí Pointer.
@@ -318,41 +382,63 @@ Dưới đây là phân tích chi tiết những gì xảy ra bên trong Go Runt
 
 Go không luôn luôn nhân đôi kích thước mảng. Từ phiên bản **Go 1.18+**, thuật toán tăng trưởng đã thay đổi để mượt mà hơn, tránh lãng phí bộ nhớ khi mảng trở nên quá lớn:
 
-*   **Nếu $cap < 256$:** Go sẽ nhân đôi ($2x$) dung lượng.
-*   **Nếu $cap \ge 256$:** Thay vì nhân đôi, Go áp dụng công thức:
-    $$newcap = oldcap + (oldcap + 3 \times 256) / 4$$
-    Cách này giúp tốc độ tăng trưởng giảm dần từ $2x$ xuống khoảng $1.25x$ khi mảng lớn dần lên.
+- **Nếu $cap < 256$:** Go sẽ nhân đôi ($2x$) dung lượng.
+- **Nếu $cap \ge 256$:** Thay vì nhân đôi, Go áp dụng công thức:
+  $$newcap = oldcap + (oldcap + 3 \times 256) / 4$$
+  Cách này giúp tốc độ tăng trưởng giảm dần từ $2x$ xuống khoảng $1.25x$ khi mảng lớn dần lên.
 
 #### 2. Quy trình "Allocation & Copy" dưới nắp capo
 
 Khi một lệnh `append` gây ra việc vượt ngưỡng (overflow) dung lượng, Go Runtime thực hiện các bước sau:
 
-1.  **Cấp phát Heap mới (`mallocgc`):** Go sẽ tìm một vùng nhớ mới trên **Heap**. Đây là một thao tác đắt đỏ vì nó liên quan đến việc tìm kiếm các "free spans" trong bộ nhớ.
-2.  **Memory Alignment (Căn chỉnh bộ nhớ):** Sau khi tính được `newcap`, Go sẽ làm tròn con số này lên để khớp với các "size classes" của bộ nhớ. Ví dụ: Bạn cần 100 bytes, nhưng Go có thể cấp phát 112 bytes để tối ưu hóa việc quản lý. Do đó, `cap` thực tế sau khi `append` thường lớn hơn con số dự tính một chút.
-3.  **Hàm `memmove`:** Đây là giai đoạn copy. Go sử dụng hàm `runtime.memmove` (thường được viết bằng hợp ngữ - Assembly để đạt tốc độ tối đa) để copy dữ liệu từ mảng cũ sang mảng mới. Mặc dù rất nhanh, nhưng với mảng hàng triệu phần tử, nó vẫn gây ra độ trễ CPU đáng kể.
-4.  **Hủy mảng cũ (GC Pressure):** Mảng cũ bây giờ không còn ai trỏ tới. Nó trở thành "rác". Garbage Collector sẽ phải tốn thêm chu kỳ CPU để quét và giải phóng vùng nhớ này sau đó.
+1. **Cấp phát Heap mới (`mallocgc`):** Go sẽ tìm một vùng nhớ mới trên **Heap**. Đây là một thao tác đắt đỏ vì nó liên quan đến việc tìm kiếm các "free spans" trong bộ nhớ.
+2. **Memory Alignment (Căn chỉnh bộ nhớ):** Sau khi tính được `newcap`, Go sẽ làm tròn con số này lên để khớp với các "size classes" của bộ nhớ. Ví dụ: Bạn cần 100 bytes, nhưng Go có thể cấp phát 112 bytes để tối ưu hóa việc quản lý. Do đó, `cap` thực tế sau khi `append` thường lớn hơn con số dự tính một chút.
+3. **Hàm `memmove`:** Đây là giai đoạn copy. Go sử dụng hàm `runtime.memmove` (thường được viết bằng hợp ngữ - Assembly để đạt tốc độ tối đa) để copy dữ liệu từ mảng cũ sang mảng mới. Mặc dù rất nhanh, nhưng với mảng hàng triệu phần tử, nó vẫn gây ra độ trễ CPU đáng kể.
+4. **Hủy mảng cũ (GC Pressure):** Mảng cũ bây giờ không còn ai trỏ tới. Nó trở thành "rác". Garbage Collector sẽ phải tốn thêm chu kỳ CPU để quét và giải phóng vùng nhớ này sau đó.
 
 #### 3. Tại sao `make([]T, len, cap)` lại tối ưu vượt trội?
 
 Khi bạn sử dụng `make` với dung lượng dự tính trước, bạn đang thực hiện chiến thuật **"Single Allocation"**:
 
-*   **Tránh "Memory Fragmentation":** Việc cấp phát - giải phóng liên tục (khi mảng lớn dần) sẽ làm bộ nhớ bị phân mảnh. `make` giúp giữ bộ nhớ liền mạch.
-*   **Loại bỏ `memmove`:** Không có dữ liệu nào phải copy đi copy lại nhiều lần.
-*   **Giảm tải cho Garbage Collector:** Thay vì tạo ra 5-10 mảng trung gian (rác) trong quá trình tăng trưởng, bạn chỉ tạo ra đúng 1 đối tượng duy nhất.
+- **Tránh "Memory Fragmentation":** Việc cấp phát - giải phóng liên tục (khi mảng lớn dần) sẽ làm bộ nhớ bị phân mảnh. `make` giúp giữ bộ nhớ liền mạch.
+- **Loại bỏ `memmove`:** Không có dữ liệu nào phải copy đi copy lại nhiều lần.
+- **Giảm tải cho Garbage Collector:** Thay vì tạo ra 5-10 mảng trung gian (rác) trong quá trình tăng trưởng, bạn chỉ tạo ra đúng 1 đối tượng duy nhất.
 
 #### 4. Phân tích hiệu năng (Benchmark thực tế)
 
 Hãy nhìn vào sự khác biệt khi xử lý 1 triệu phần tử:
 
-*   **Iterative Append (không `make`):** Có thể xảy ra khoảng 20-25 lần cấp phát lại (re-allocation), tốn hàng chục ms cho việc copy và dọn rác.
-*   **Pre-allocated Make:** Chỉ có **1 lần** cấp phát duy nhất. Tốc độ nhanh hơn gấp 2-5 lần và lượng RAM tiêu thụ ổn định tuyệt đối.
+- **Iterative Append (không `make`):** Có thể xảy ra khoảng 20-25 lần cấp phát lại (re-allocation), tốn hàng chục ms cho việc copy và dọn rác.
+- **Pre-allocated Make:** Chỉ có **1 lần** cấp phát duy nhất. Tốc độ nhanh hơn gấp 2-5 lần và lượng RAM tiêu thụ ổn định tuyệt đối.
 
 #### 5. Lời khuyên cho Senior
 
 Trong các hệ thống Backend đòi hỏi độ trễ thấp (Low Latency):
-1.  **Dự đoán kích thước:** Nếu fetch dữ liệu từ Database hoặc Proxmox, hãy dùng `COUNT` trước hoặc ước lượng một con số trung bình để `make`.
-2.  **Slicing từ mảng lớn:** Nếu bạn cần lọc dữ liệu, thay vì `append` vào slice mới, hãy cân nhắc thao tác ngay trên slice cũ bằng cách thay đổi index để tránh cấp phát thêm.
-3.  **Thận trọng với mảng lớn:** Nếu slice quá lớn (vài trăm MB), việc `append` gây nhân đôi dung lượng có thể dẫn đến lỗi `out of memory` đột ngột dù bạn nghĩ mình vẫn còn dư RAM.
+
+1. **Dự đoán kích thước:** Nếu fetch dữ liệu từ Database hoặc Proxmox, hãy dùng `COUNT` trước hoặc ước lượng một con số trung bình để `make`.
+2. **Slicing từ mảng lớn:** Nếu bạn cần lọc dữ liệu, thay vì `append` vào slice mới, hãy cân nhắc thao tác ngay trên slice cũ bằng cách thay đổi index để tránh cấp phát thêm.
+3. **Thận trọng với mảng lớn:** Nếu slice quá lớn (vài trăm MB), việc `append` gây nhân đôi dung lượng có thể dẫn đến lỗi `out of memory` đột ngột dù bạn nghĩ mình vẫn còn dư RAM.
+
+---
+
+### String
+
+Về mặt kỹ thuật, một string trong Go là một Header cực kỳ nhỏ gọn, bao gồm hai trường:
+
+- **Data Pointer:** Con trỏ trỏ đến mảng byte ngầm định (Underlying byte array).
+- **Len:** Độ dài của chuỗi (tính theo số lượng byte).
+
+- **Immutability (Bất biến):** Dữ liệu mà con trỏ trỏ tới là không thể thay đổi. Mọi thao tác "sửa" chuỗi thực tế là tạo ra một Header mới trỏ đến một vùng nhớ mới.
+
+- **Zero-copy Slicing:** Khi bạn thực hiện `s2 := s1[1:5]`, Go không copy dữ liệu. `s2` chỉ là một Header mới trỏ vào giữa mảng byte của `s1`. Điều này cực kỳ hiệu quả về mặt hiệu năng nhưng có thể gây "memory leak" nếu bạn giữ một slice nhỏ từ một string khổng lồ.
+
+### UTF-8, Rune và Byte
+
+| Khái niệm | Kiểu dữ liệu | Giải thích                                                                        |
+| --------- | ------------ | --------------------------------------------------------------------------------- |
+| Byte      | uint8        | Đơn vị lưu trữ cơ bản. Ký tự ASCII chiếm 1 byte, ký tự Unicode chiếm 2-4 bytes."  |
+| Rune      | int32        | "Đại diện cho một Unicode Code Point. Một "chữ" chúng ta đọc được."               |
+| String    | string       | "Một dãy các byte (không nhất thiết phải là UTF-8 hợp lệ, nhưng mặc định là vậy). |
 
 ---
 
@@ -402,20 +488,68 @@ func (p Person) Describe() {
 
 ## 🧬 6. Concurrency (Goroutines & Channels)
 
-Đây là "vũ khí" mạnh nhất của Go.
+Đây là "vũ khí" mạnh nhất của Go, giúp nó xử lý hàng triệu kết nối đồng thời với tài nguyên cực thấp.
 
-- **Goroutine:** Dùng từ khóa `go` trước một hàm để chạy song song. Chỉ tốn khoảng 2KB RAM.
-- **Channel:** Dùng để giao tiếp giữa các goroutines (Don't communicate by sharing memory; share memory by communicating).
+### ⚔️ So sánh Thread (Hệ điều hành) vs Goroutines (Go Runtime)
+
+| Đặc điểm | OS Thread | Goroutines |
+| :--- | :--- | :--- |
+| **Quản lý** | Bởi Hệ điều hành (OS), phụ thuộc số nhân CPU vật lý. | Bởi **Go Runtime**, không phụ thuộc số nhân CPU. |
+| **Kích thước Stack** | Cố định (thường 1-2MB). Dễ gây lãng phí bộ nhớ. | Linh hoạt (khởi đầu 2KB). Có thể tăng/giảm động. |
+| **Stack Growth** | Cấp phát lúc biên dịch, không thể tăng thêm (dễ bị Stack Overflow). | Có thể tăng lên đến **1GB** trên hệ thống 64-bit. |
+| **Giao tiếp** | Khó khăn, độ trễ lớn (thường dùng Shared Memory + Lock). | Dễ dàng qua **Channels** với độ trễ cực thấp. |
+| **Định danh** | Có ID cụ thể (TID) trong process. | Không có ID công khai (để tránh lạm dụng Thread Local Storage). |
+| **Lifecycle** | Khởi tạo và giải phóng tốn nhiều thời gian/CPU. | Go Runtime quản lý việc tạo/xóa cực kỳ nhanh chóng. |
+| **Context Switch** | Chi phí lớn do OS phải can thiệp (Save/Restore Registers). | Chi phí cực thấp do Go Runtime tự điều phối (M:N scheduling). |
+
+### Cách sử dụng cơ bản
+
+- **Goroutine:** Dùng từ khóa `go` trước một hàm để chạy song song.
+- **Channel:** Dùng để giao tiếp giữa các goroutines (**"Don't communicate by sharing memory; share memory by communicating"**).
 
 ```go
 ch := make(chan string)
-go func() { ch <- "Done" }()
-msg := <-ch // Chờ nhận dữ liệu
+go func() {
+    ch <- "Done" // Gửi dữ liệu vào channel
+}()
+msg := <-ch     // Nhận dữ liệu (Blocking cho đến khi có tin nhắn)
+fmt.Println(msg)
 ```
 
 ---
 
-## 7. Các từ khóa đặc biệt (`defer`, `panic`, `recover`)
+## 🛡️ 7. Context (Quản lý vòng đời và Cancellation)
+
+`context` là một package cực kỳ quan trọng trong Go, được dùng để quản lý thời gian sống (lifecycle), hủy bỏ (cancellation) và truyền dữ liệu (metadata) xuyên suốt các lời gọi hàm và API.
+
+**Các trường hợp sử dụng chính:**
+- **Cancellation:** Hủy các goroutines đang chạy khi không còn cần thiết (ví dụ: người dùng đóng trình duyệt).
+- **Timeout/Deadline:** Giới hạn thời gian chạy của một tác vụ để tránh treo hệ thống.
+- **Metadata:** Truyền dữ liệu như RequestID, Auth Token xuyên suốt các lớp xử lý.
+
+**Ví dụ về Timeout:**
+
+```go
+func main() {
+    // Tạo context với timeout 2 giây
+    ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+    
+    // Quan trọng: Luôn gọi cancel để giải phóng tài nguyên ngay khi xong việc
+    defer cancel() 
+
+    select {
+    case <-time.After(3 * time.Second):
+        fmt.Println("Tác vụ hoàn thành sau 3s")
+    case <-ctx.Done():
+        // Nếu quá 2s mà chưa xong, case này sẽ chạy
+        fmt.Println("Lỗi:", ctx.Err()) // Output: context deadline exceeded
+    }
+}
+```
+
+---
+
+## 8. Các từ khóa đặc biệt (`defer`, `panic`, `recover`)
 
 ### Defer
 
@@ -441,7 +575,7 @@ func main() {
 
 ---
 
-## ⚠️ 8. Xử lý lỗi (Error Handling)
+## ⚠️ 9. Xử lý lỗi (Error Handling)
 
 Go không dùng `try/catch`. Lỗi là một giá trị trả về.
 
@@ -460,7 +594,7 @@ if err != nil {
 
 ---
 
-## 🔗 8. So sánh Go với Node.js (Cho Developer)
+## 🔗 10. So sánh Go với Node.js (Cho Developer)
 
 Để xem chi tiết bản so sánh tư duy lập trình và báo cáo hiệu năng thực tế giữa Go và Node.js/TypeScript (Bun), vui lòng xem tài liệu riêng biệt:
 
@@ -468,7 +602,11 @@ if err != nil {
 
 ---
 
-## ❓ Q&A Quan trọng
+# Xử lý đồng thời trong Golang
+
+---
+
+## ❓ 11. Q&A Quan trọng
 
 ### 1. Số thực (Float) được lưu thế nào?
 
