@@ -5,53 +5,64 @@ Tự học Go
 ## 📑 Mục lục
 
 - [Go (Golang) Learning Journey 🚀](#go-golang-learning-journey-)
-   - [📑 Mục lục](#-mục-lục)
-   - [🏁 1. Giới thiệu về Go](#-1-giới-thiệu-về-go)
-      - [Đặc điểm cốt lõi:](#đặc-điểm-cốt-lõi)
-   - [🛠 2. Tooling \& Workspace](#-2-tooling--workspace)
-      - [Lệnh cơ bản](#lệnh-cơ-bản)
-         - [Quy tắc \& Cú pháp quan trọng](#quy-tắc--cú-pháp-quan-trọng)
-      - [Cấu trúc Project khuyến nghị](#cấu-trúc-project-khuyến-nghị)
-   - [📜 3. Cú pháp cơ bản (Basic Syntax)](#-3-cú-pháp-cơ-bản-basic-syntax)
-      - [3. Khai báo Biến (Variables)](#3-khai-báo-biến-variables)
-         - [Các cách khai báo chính](#các-cách-khai-báo-chính)
-         - [Khai báo không khởi tạo (Zero Values)](#khai-báo-không-khởi-tạo-zero-values)
-         - [So sánh `var` và `:=`](#so-sánh-var-và-)
-         - [Khai báo nhiều biến](#khai-báo-nhiều-biến)
-         - [Quy tắc đặt tên biến (Naming Rules)](#quy-tắc-đặt-tên-biến-naming-rules)
-         - [Hằng số (Constants) \& Iota](#hằng-số-constants--iota)
-         - [Hàm Xuất dữ liệu (Output Functions)](#hàm-xuất-dữ-liệu-output-functions)
-         - [Hệ thống Toán tử (Operators)](#hệ-thống-toán-tử-operators)
-      - [Kiểu dữ liệu cơ bản](#kiểu-dữ-liệu-cơ-bản)
-   - [⚙️ 4. Control Flow](#️-4-control-flow)
-      - [If / Else](#if--else)
-      - [Loops (Chỉ có `for`)](#loops-chỉ-có-for)
-      - [Switch](#switch)
-   - [📦 5. Data Structures](#-5-data-structures)
-      - [Arrays \& Slices](#arrays--slices)
-         - [🧠 Cấu trúc chuyên sâu: Slice Header](#-cấu-trúc-chuyên-sâu-slice-header)
-      - [🚀 Phân tích chuyên sâu: Cơ chế Append \& Reallocation](#-phân-tích-chuyên-sâu-cơ-chế-append--reallocation)
-         - [1. Cơ chế tính toán "New Capacity" (Growth Algorithm)](#1-cơ-chế-tính-toán-new-capacity-growth-algorithm)
-         - [2. Quy trình "Allocation \& Copy" dưới nắp capo](#2-quy-trình-allocation--copy-dưới-nắp-capo)
-         - [3. Tại sao `make([]T, len, cap)` lại tối ưu vượt trội?](#3-tại-sao-maket-len-cap-lại-tối-ưu-vượt-trội)
-         - [4. Phân tích hiệu năng (Benchmark thực tế)](#4-phân-tích-hiệu-năng-benchmark-thực-tế)
-         - [5. Lời khuyên cho Senior](#5-lời-khuyên-cho-senior)
-      - [String](#string)
-      - [UTF-8, Rune và Byte](#utf-8-rune-và-byte)
-      - [Maps (Key-Value)](#maps-key-value)
-      - [Structs (Thay thế Class)](#structs-thay-thế-class)
-      - [Methods (Hàm dành riêng cho Struct)](#methods-hàm-dành-riêng-cho-struct)
-   - [🧬 6. Concurrency (Goroutines \& Channels)](#-6-concurrency-goroutines--channels)
-   - [🛡️ 7. Context (Quản lý vòng đời và Cancellation)](#-7-context-quản-lý-vòng-đời-và-cancellation)
-   - [8. Các từ khóa đặc biệt (`defer`, `panic`, `recover`)](#8-các-từ-khóa-đặc-biệt-defer-panic-recover)
-      - [Defer](#defer)
-      - [Panic \& Recover](#panic--recover)
-   - [⚠️ 9. Xử lý lỗi (Error Handling)](#️-9-xử-lý-lỗi-error-handling)
-   - [🔗 10. So sánh Go với Node.js (Cho Developer)](#-10-so-sánh-go-với-nodejs-cho-developer)
+  - [📑 Mục lục](#-mục-lục)
+  - [🏁 1. Giới thiệu về Go](#-1-giới-thiệu-về-go)
+    - [Đặc điểm cốt lõi:](#đặc-điểm-cốt-lõi)
+  - [🛠 2. Tooling \& Workspace](#-2-tooling--workspace)
+    - [Lệnh cơ bản](#lệnh-cơ-bản)
+      - [Quy tắc \& Cú pháp quan trọng](#quy-tắc--cú-pháp-quan-trọng)
+    - [Cấu trúc Project khuyến nghị](#cấu-trúc-project-khuyến-nghị)
+  - [📜 3. Cú pháp cơ bản (Basic Syntax)](#-3-cú-pháp-cơ-bản-basic-syntax)
+    - [3. Khai báo Biến (Variables)](#3-khai-báo-biến-variables)
+      - [Các cách khai báo chính](#các-cách-khai-báo-chính)
+      - [Khai báo không khởi tạo (Zero Values)](#khai-báo-không-khởi-tạo-zero-values)
+      - [So sánh `var` và `:=`](#so-sánh-var-và-)
+      - [Khai báo nhiều biến](#khai-báo-nhiều-biến)
+      - [Quy tắc đặt tên biến (Naming Rules)](#quy-tắc-đặt-tên-biến-naming-rules)
+      - [Hằng số (Constants) \& Iota](#hằng-số-constants--iota)
+      - [Hàm Xuất dữ liệu (Output Functions)](#hàm-xuất-dữ-liệu-output-functions)
+      - [Hệ thống Toán tử (Operators)](#hệ-thống-toán-tử-operators)
+    - [Kiểu dữ liệu cơ bản](#kiểu-dữ-liệu-cơ-bản)
+  - [⚙️ 4. Control Flow](#️-4-control-flow)
+    - [If / Else](#if--else)
+    - [Loops (Chỉ có `for`)](#loops-chỉ-có-for)
+    - [Switch](#switch)
+  - [📦 5. Data Structures](#-5-data-structures)
+    - [Arrays \& Slices](#arrays--slices)
+      - [🧠 Cấu trúc chuyên sâu: Slice Header](#-cấu-trúc-chuyên-sâu-slice-header)
+    - [🚀 Phân tích chuyên sâu: Cơ chế Append \& Reallocation](#-phân-tích-chuyên-sâu-cơ-chế-append--reallocation)
+      - [1. Cơ chế tính toán "New Capacity" (Growth Algorithm)](#1-cơ-chế-tính-toán-new-capacity-growth-algorithm)
+      - [2. Quy trình "Allocation \& Copy" dưới nắp capo](#2-quy-trình-allocation--copy-dưới-nắp-capo)
+      - [3. Tại sao `make([]T, len, cap)` lại tối ưu vượt trội?](#3-tại-sao-maket-len-cap-lại-tối-ưu-vượt-trội)
+      - [4. Phân tích hiệu năng (Benchmark thực tế)](#4-phân-tích-hiệu-năng-benchmark-thực-tế)
+      - [5. Lời khuyên cho Senior](#5-lời-khuyên-cho-senior)
+    - [String](#string)
+    - [UTF-8, Rune và Byte](#utf-8-rune-và-byte)
+    - [Maps (Key-Value)](#maps-key-value)
+    - [Structs (Thay thế Class)](#structs-thay-thế-class)
+    - [Methods (Hàm dành riêng cho Struct)](#methods-hàm-dành-riêng-cho-struct)
+  - [🧬 6. Concurrency (Goroutines \& Channels)](#-6-concurrency-goroutines--channels)
+    - [⚔️ So sánh Thread (Hệ điều hành) vs Goroutines (Go Runtime)](#️-so-sánh-thread-hệ-điều-hành-vs-goroutines-go-runtime)
+    - [Cách sử dụng cơ bản](#cách-sử-dụng-cơ-bản)
+  - [🛡️ 7. Context (Quản lý vòng đời và Cancellation)](#️-7-context-quản-lý-vòng-đời-và-cancellation)
+  - [8. Các từ khóa đặc biệt (`defer`, `panic`, `recover`)](#8-các-từ-khóa-đặc-biệt-defer-panic-recover)
+    - [Defer](#defer)
+    - [Panic \& Recover](#panic--recover)
+  - [⚠️ 9. Xử lý lỗi (Error Handling)](#️-9-xử-lý-lỗi-error-handling)
+  - [🔗 10. So sánh Go với Node.js (Cho Developer)](#-10-so-sánh-go-với-nodejs-cho-developer)
 - [Xử lý đồng thời trong Golang](#xử-lý-đồng-thời-trong-golang)
-   - [❓ 11. Q\&A Quan trọng](#-qa-quan-trọng)
-      - [1. Số thực (Float) được lưu thế nào?](#1-số-thực-float-được-lưu-thế-nào)
-      - [2. Interface trong Go có gì đặc biệt?](#2-interface-trong-go-có-gì-đặc-biệt)
+  - [❓ 11. Q\&A Quan trọng](#-11-qa-quan-trọng)
+    - [1. Số thực (Float) được lưu thế nào?](#1-số-thực-float-được-lưu-thế-nào)
+    - [2. Interface trong Go có gì đặc biệt?](#2-interface-trong-go-có-gì-đặc-biệt)
+    - [PHẦN 1: CÁC KHÁI NIỆM \& CÚ PHÁP CỐT LÕI (Core Syntax)](#phần-1-các-khái-niệm--cú-pháp-cốt-lõi-core-syntax)
+      - [1. Pointer vs. Value (Con trỏ \& Tham trị)](#1-pointer-vs-value-con-trỏ--tham-trị)
+      - [2. Slices \& Maps (Cơ chế hoạt động bên dưới)](#2-slices--maps-cơ-chế-hoạt-động-bên-dưới)
+      - [3. Concurrency (Lập trình song song): Goroutines \& Channels](#3-concurrency-lập-trình-song-song-goroutines--channels)
+      - [4. Quản lý đồng bộ bộ nhớ (Mutex \& Atomics)](#4-quản-lý-đồng-bộ-bộ-nhớ-mutex--atomics)
+      - [5. Context (`context.Context`)](#5-context-contextcontext)
+      - [6. Quản lý lỗi (Error Handling)](#6-quản-lý-lỗi-error-handling)
+    - [PHẦN 2: CÔNG NGHỆ BỔ TRỢ CẦN BIẾT (Tech Stack)](#phần-2-công-nghệ-bổ-trợ-cần-biết-tech-stack)
+    - [LỘ TRÌNH THỰC HÀNH TỰ LUYỆN (Practice Roadmap)](#lộ-trình-thực-hành-tự-luyện-practice-roadmap)
 
 ---
 
@@ -492,15 +503,15 @@ func (p Person) Describe() {
 
 ### ⚔️ So sánh Thread (Hệ điều hành) vs Goroutines (Go Runtime)
 
-| Đặc điểm | OS Thread | Goroutines |
-| :--- | :--- | :--- |
-| **Quản lý** | Bởi Hệ điều hành (OS), phụ thuộc số nhân CPU vật lý. | Bởi **Go Runtime**, không phụ thuộc số nhân CPU. |
-| **Kích thước Stack** | Cố định (thường 1-2MB). Dễ gây lãng phí bộ nhớ. | Linh hoạt (khởi đầu 2KB). Có thể tăng/giảm động. |
-| **Stack Growth** | Cấp phát lúc biên dịch, không thể tăng thêm (dễ bị Stack Overflow). | Có thể tăng lên đến **1GB** trên hệ thống 64-bit. |
-| **Giao tiếp** | Khó khăn, độ trễ lớn (thường dùng Shared Memory + Lock). | Dễ dàng qua **Channels** với độ trễ cực thấp. |
-| **Định danh** | Có ID cụ thể (TID) trong process. | Không có ID công khai (để tránh lạm dụng Thread Local Storage). |
-| **Lifecycle** | Khởi tạo và giải phóng tốn nhiều thời gian/CPU. | Go Runtime quản lý việc tạo/xóa cực kỳ nhanh chóng. |
-| **Context Switch** | Chi phí lớn do OS phải can thiệp (Save/Restore Registers). | Chi phí cực thấp do Go Runtime tự điều phối (M:N scheduling). |
+| Đặc điểm             | OS Thread                                                           | Goroutines                                                      |
+| :------------------- | :------------------------------------------------------------------ | :-------------------------------------------------------------- |
+| **Quản lý**          | Bởi Hệ điều hành (OS), phụ thuộc số nhân CPU vật lý.                | Bởi **Go Runtime**, không phụ thuộc số nhân CPU.                |
+| **Kích thước Stack** | Cố định (thường 1-2MB). Dễ gây lãng phí bộ nhớ.                     | Linh hoạt (khởi đầu 2KB). Có thể tăng/giảm động.                |
+| **Stack Growth**     | Cấp phát lúc biên dịch, không thể tăng thêm (dễ bị Stack Overflow). | Có thể tăng lên đến **1GB** trên hệ thống 64-bit.               |
+| **Giao tiếp**        | Khó khăn, độ trễ lớn (thường dùng Shared Memory + Lock).            | Dễ dàng qua **Channels** với độ trễ cực thấp.                   |
+| **Định danh**        | Có ID cụ thể (TID) trong process.                                   | Không có ID công khai (để tránh lạm dụng Thread Local Storage). |
+| **Lifecycle**        | Khởi tạo và giải phóng tốn nhiều thời gian/CPU.                     | Go Runtime quản lý việc tạo/xóa cực kỳ nhanh chóng.             |
+| **Context Switch**   | Chi phí lớn do OS phải can thiệp (Save/Restore Registers).          | Chi phí cực thấp do Go Runtime tự điều phối (M:N scheduling).   |
 
 ### Cách sử dụng cơ bản
 
@@ -523,6 +534,7 @@ fmt.Println(msg)
 `context` là một package cực kỳ quan trọng trong Go, được dùng để quản lý thời gian sống (lifecycle), hủy bỏ (cancellation) và truyền dữ liệu (metadata) xuyên suốt các lời gọi hàm và API.
 
 **Các trường hợp sử dụng chính:**
+
 - **Cancellation:** Hủy các goroutines đang chạy khi không còn cần thiết (ví dụ: người dùng đóng trình duyệt).
 - **Timeout/Deadline:** Giới hạn thời gian chạy của một tác vụ để tránh treo hệ thống.
 - **Metadata:** Truyền dữ liệu như RequestID, Auth Token xuyên suốt các lớp xử lý.
@@ -533,9 +545,9 @@ fmt.Println(msg)
 func main() {
     // Tạo context với timeout 2 giây
     ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
-    
+
     // Quan trọng: Luôn gọi cancel để giải phóng tài nguyên ngay khi xong việc
-    defer cancel() 
+    defer cancel()
 
     select {
     case <-time.After(3 * time.Second):
@@ -598,7 +610,7 @@ if err != nil {
 
 Để xem chi tiết bản so sánh tư duy lập trình và báo cáo hiệu năng thực tế giữa Go và Node.js/TypeScript (Bun), vui lòng xem tài liệu riêng biệt:
 
-👉 **[Báo cáo So sánh Go vs Node.js](file:///Users/dungxbuif/workspace/go-study/GO_NODEJS.md)**
+👉 **[Báo cáo So sánh Go vs Node.js](./GO_NODEJS.md)**
 
 ---
 
@@ -623,3 +635,93 @@ _Tài liệu này được tổng hợp để hỗ trợ quá trình học tập
 ASCII
 
 - use 7 bits bieu dien 128 ky tu
+
+atomic unit
+mutex
+
+Viewed main.md:22-84
+
+Đối với một nhà phát triển (developer) đang học và muốn làm chủ (master) ngôn ngữ Go (Golang), đặc biệt là hướng tới xây dựng các hệ thống backend chất lượng cao, chịu tải lớn (như hệ thống Indexer ta vừa phân tích), dưới đây là lộ trình chi tiết về **Cú pháp cốt lõi**, **Công nghệ bổ trợ** và **Thực hành thực tế** cần tập trung luyện tập:
+
+---
+
+### PHẦN 1: CÁC KHÁI NIỆM & CÚ PHÁP CỐT LÕI (Core Syntax)
+
+Go là ngôn ngữ cực kỳ tối giản (chỉ có khoảng 25 từ khóa), nhưng để viết code hiệu quả và tối ưu hiệu năng, bạn cần hiểu sâu các khái niệm bên dưới lớp vỏ tối giản đó:
+
+#### 1. Pointer vs. Value (Con trỏ & Tham trị)
+
+- **Cần hiểu:** Cơ chế cấp phát bộ nhớ (Stack vs. Heap, Escape Analysis).
+- **Khi nào dùng:**
+   - Truyền con trỏ (`*T`) để sửa đổi trực tiếp dữ liệu hoặc tránh copy các struct lớn (tiết kiệm RAM).
+   - Truyền tham trị (`T`) để đảm bảo dữ liệu là bất biến (immutable) và an toàn giữa các luồng.
+- **Luyện tập:** Viết các phương thức (methods) với Value Receiver và Pointer Receiver để so sánh sự khác biệt.
+
+#### 2. Slices & Maps (Cơ chế hoạt động bên dưới)
+
+- **Cần hiểu:** Slice thực chất là một Header trỏ tới một _underlying array_. Khi slice vượt quá sức chứa (`capacity`), Go sẽ tự động cấp phát một array mới lớn gấp đôi và copy dữ liệu sang.
+- **Tối ưu:** Luôn cấp phát trước dung lượng nếu biết trước kích thước bằng `make([]Type, 0, capacity)` để tránh cấp phát lại liên tục gây chậm hệ thống (gây áp lực lên Garbage Collector).
+- **Luyện tập:** Sử dụng slice expressions, thao tác thêm/xóa phần tử trong slice/map một cách tối ưu.
+
+#### 3. Concurrency (Lập trình song song): Goroutines & Channels
+
+Đây là "vũ khí tối thượng" của Go.
+
+- **Cần hiểu:**
+   - **Goroutine:** Luồng siêu nhẹ (chỉ tốn khoảng 2KB RAM khởi điểm) chạy trên mô hình lập trình ghép kênh M:N của Go Runtime.
+   - **Channels:** Cơ chế giao tiếp giữa các Goroutines theo triết lý: _"Don't communicate by sharing memory; share memory by communicating"_.
+   - **Buffered vs. Unbuffered Channel:** Sự khác biệt về blocking behavior (khóa luồng).
+   - **Select Statement:** Điều hướng dữ liệu từ nhiều channel đồng thời.
+- **Luyện tập:** Viết mô hình **Worker Pool** (1 hàng đợi công việc, nhiều worker xử lý song song giống như cơ chế tải khối của `Poller`).
+
+#### 4. Quản lý đồng bộ bộ nhớ (Mutex & Atomics)
+
+- **Cần hiểu:** Khi nhiều Goroutines cùng đọc/ghi vào một biến hoặc vùng nhớ, bạn sẽ gặp lỗi **Race Condition**.
+- **Công cụ:**
+   - `sync.Mutex` và `sync.RWMutex` (Khóa đọc/ghi).
+   - `sync/atomic` (Phép toán nguyên tử cấp CPU): Cực kỳ nhẹ và hiệu năng cao cho các biến số trạng thái (như biến `lastCommittedBlock atomic.Uint64` mà ta đã phân tích).
+- **Luyện tập:** Sử dụng công cụ kiểm tra xung đột luồng của Go: `go test -race ./...`.
+
+#### 5. Context (`context.Context`)
+
+- **Cần hiểu:** Cách lan truyền tín hiệu hủy (cancellation), giới hạn thời gian (timeout) và truyền metadata xuyên suốt các tầng API/Database/Network.
+- **Lưu ý:** Thiếu `context` hoặc xử lý sai sẽ dẫn đến rò rỉ Goroutine (Goroutine leak) khiến ứng dụng bị tràn RAM và sập sau một thời gian chạy.
+- **Luyện tập:** Viết một tác vụ chạy nền dài hạn và áp dụng cơ chế **Graceful Shutdown** (dừng an toàn) bằng cách lắng nghe tín hiệu từ hệ điều hành (`SIGINT`/`SIGTERM`) kết hợp với `context.WithCancel`.
+
+#### 6. Quản lý lỗi (Error Handling)
+
+- **Cần hiểu:** Go không sử dụng `try/catch` mà coi lỗi là một giá trị trả về thường nhật (`error`).
+- **Kỹ thuật:** Sử dụng `errors.Is()`, `errors.As()` để so sánh lỗi và `fmt.Errorf("... %w", err)` để bọc lỗi (error wrapping) giữ nguyên vết lỗi ban đầu.
+
+---
+
+### PHẦN 2: CÔNG NGHỆ BỔ TRỢ CẦN BIẾT (Tech Stack)
+
+Để làm dự án thực tế, chỉ giỏi cú pháp Go là chưa đủ. Bạn cần luyện tập bộ công cụ (ecosystem) xung quanh:
+
+1. **Hệ quản trị CSDL & SQL:**
+   - Hiểu cách cấu hình **Connection Pool** (`MaxOpenConns`, `MaxIdleConns`, `ConnMaxLifetime`) thông qua thư viện `database/sql`. Việc cấu hình sai có thể bóp nghẹt hiệu năng của DB.
+   - Biết cách quản lý transaction (`tx.Begin()`, `tx.Commit()`, `tx.Rollback()`) để đảm bảo tính toàn vẹn dữ liệu (ACID).
+   - Quản lý cơ sở dữ liệu có phiên bản bằng công cụ Migration (như `golang-migrate`).
+2. **gRPC và Protocol Buffers (Protobuf):**
+   - Thay vì chỉ dùng REST API (JSON), các hệ thống backend hiệu năng cao ngày nay đa phần sử dụng **gRPC** để giao tiếp (giống như cách Indexer giao tiếp với MMN Node).
+   - Luyện tập viết các file `.proto` và tự sinh code Go (`protoc-gen-go`).
+3. **Structured Logging & Metrics:**
+   - Bỏ thói quen dùng `fmt.Println` để debug trên Production. Thay vào đó hãy dùng các thư viện ghi log cấu trúc định dạng JSON (như `zerolog` hoặc `zap`).
+   - Tích hợp **Prometheus** để đo đạc chỉ số hệ thống (số request/giây, thời gian xử lý database, RAM/CPU tiêu thụ).
+4. **Unit Testing & Mocking:**
+   - Go tích hợp sẵn bộ test rất mạnh (`go test`). Bạn cần học cách viết **Table-Driven Tests** (phương pháp chuẩn mực của cộng đồng Go).
+   - Sử dụng công cụ sinh Mock (như `mockery`) để viết Unit Test cho tầng nghiệp vụ (Business Logic) mà không cần phụ thuộc vào cơ sở dữ liệu thật.
+
+---
+
+### LỘ TRÌNH THỰC HÀNH TỰ LUYỆN (Practice Roadmap)
+
+Để tiến bộ nhanh nhất, bạn hãy tự tay xây dựng 3 bài tập thực tế sau từ dễ đến khó:
+
+- **Bài tập 1: Multi-threaded Web Crawler (Cấp độ Cơ bản)**
+   - _Yêu cầu:_ Viết một công cụ cào dữ liệu từ danh sách 100 trang web. Sử dụng Goroutines để tải dữ liệu song song. Sử dụng `sync.WaitGroup` hoặc Channel để đợi các luồng hoàn thành. Áp dụng `context.WithTimeout` để nếu trang nào tải quá 3 giây thì tự hủy.
+- **Bài tập 2: REST & gRPC API dịch vụ Ví điện tử (Cấp độ Trung cấp)**
+   - _Yêu cầu:_ Xây dựng dịch vụ API thực hiện chuyển tiền qua lại giữa các tài khoản. Viết Database Migration bằng Postgres. Sử dụng SQL Transaction để đảm bảo tiền trừ tài khoản A thì chắc chắn phải cộng vào tài khoản B. Viết Unit Test và dùng Mock để test logic chuyển tiền.
+- **Bài tập 3: Pipeline xử lý dữ liệu thời gian thực (Cấp độ Nâng cao)**
+   - _Yêu cầu:_ Giả lập một hệ thống giống như Indexer. Viết 1 Goroutine (Poller) liên tục sinh ra các bản ghi số liệu giả lập đẩy vào một mảng tạm (Staging). Viết Goroutine thứ 2 (Committer) định kỳ lấy dữ liệu từ mảng tạm đó, lọc các bản ghi trùng lặp và lưu vào Database chính. Tích hợp log cấu trúc và Prometheus để giám sát tốc độ xử lý dữ liệu.
