@@ -513,6 +513,48 @@ func (p Person) Describe() {
 | **Lifecycle**        | Khởi tạo và giải phóng tốn nhiều thời gian/CPU.                     | Go Runtime quản lý việc tạo/xóa cực kỳ nhanh chóng.             |
 | **Context Switch**   | Chi phí lớn do OS phải can thiệp (Save/Restore Registers).          | Chi phí cực thấp do Go Runtime tự điều phối (M:N scheduling).   |
 
+### ⚙️ Đi sâu cơ chế M:N Scheduling & Mô hình GMP (Go Scheduler)
+
+Để đạt được hiệu năng vượt trội, Go không ánh xạ trực tiếp `1 Goroutine` vào `1 OS Thread` (tỷ lệ 1:1) mà sử dụng cơ chế điều phối **M:N** (M Goroutines chạy trên N OS Threads logic) thông qua mô hình **GMP**:
+
+```
+                  ┌──────────────┐
+                  │ Global Queue │
+                  └──────┬───────┘
+                         │
+                         ▼
+                  ┌──────────────┐
+                  │   OS Thread  │ (M)
+                  └──────┬───────┘
+                         │ (quản lý / thực thi)
+                         ▼
+                  ┌──────────────┐
+                  │  Processor   │ (P) ──[ Local Run Queue: G1 ➔ G2 ➔ G3 ]
+                  └──────┬───────┘
+                         │ (đang chạy)
+                         ▼
+                  ┌──────────────┐
+                  │  Goroutine   │ (G)
+                  └──────┬───────┘
+```
+
+*   **G (Goroutine):** Đại diện cho một luồng thực thi phía User-space. Nó chứa stack riêng (khởi đầu chỉ 2KB), Program Counter và các thông tin trạng thái để lên lịch.
+*   **M (Machine / OS Thread):** Thực thể vật lý duy nhất thực thi mã máy trên CPU, do Hệ điều hành quản lý.
+*   **P (Processor / Bộ điều phối logic):** Đại diện cho tài nguyên cần thiết để chạy mã Go. Số lượng `P` cố định bằng số nhân CPU vật lý (`GOMAXPROCS`). Mỗi `P` quản lý một **Local Run Queue** chứa các Goroutine đang chờ được chạy.
+
+#### 3 Thuật toán cốt lõi làm nên sức mạnh của GMP:
+
+1.  **Work Stealing (Trộm việc):**
+    Khi một Thread `M` chạy hết tác vụ trong hàng đợi cục bộ của `P` đi kèm, thay vì đi ngủ (gây tốn chi phí Context Switch của OS), nó sẽ chủ động sang các `P` khác để **"trộm" lại 50% số lượng Goroutine** đang xếp hàng để xử lý phụ.
+2.  **Hand-Off (Chuyển giao) khi gặp Blocking Syscall:**
+    Khi một Goroutine `G` thực hiện gọi một System Call đồng bộ (như đọc file từ đĩa cứng hoặc truy vấn DNS), OS Thread `M` chứa nó sẽ bị block.
+    *   *Giải pháp:* Go Runtime ngay lập tức ngắt liên kết giữa `P` và `M`. `P` sẽ được chuyển giao sang một Thread `M` rảnh khác để tiếp tục chạy các Goroutine còn lại. Khi tác vụ I/O của `M` cũ xong, `G` đó sẽ được nạp lại vào một hàng đợi `P` bất kỳ.
+3.  **Netpoller (Asynchronous Network I/O):**
+    Đối với I/O mạng, Go không dùng cơ chế chặn đồng bộ. Khi `G` thực hiện I/O mạng, nó sẽ được chuyển vào quản lý bởi **Netpoller** (dựa trên `epoll` của Linux hoặc `kqueue` của macOS) để ngủ. 
+    *   OS Thread `M` hoàn toàn không bị block và có thể lấy ngay một `G` khác để chạy. Khi gói tin mạng trả về, Netpoller sẽ đánh thức `G` dậy và chuyển về lại hàng đợi `P`.
+4.  **Asynchronous Preemption (Trưng dụng phi hợp tác):**
+    Từ Go 1.14, Go Runtime áp dụng cơ chế trưng dụng bằng cách định kỳ gửi tín hiệu OS (`SIGURG`) tới các thread đang chạy. Nếu phát hiện một `G` chiếm dụng luồng liên tục quá **10ms** (ví dụ vòng lặp vô hạn), Go sẽ cưỡng chế dừng `G` lại, đẩy về hàng đợi để nhường sân cho các `G` khác.
+
 ### Cách sử dụng cơ bản
 
 - **Goroutine:** Dùng từ khóa `go` trước một hàm để chạy song song.
