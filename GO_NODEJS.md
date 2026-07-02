@@ -1,8 +1,17 @@
-# 🚀 Phân tích Chuyên sâu: Go vs Node.js (Framework & Deep-dive)
+# 🚀 Phân tích Chuyên sâu: Go vs Node.js (Core Deep-dive)
 
 Tài liệu này cung cấp một bộ khung phân tích toàn diện (Deep-Dive Framework) và các chi tiết kỹ thuật "dưới mui xe" để so sánh Go và Node.js.
 
 ---
+
+## 🗺️ Bản Đồ Wiki & Hệ Sinh Thái Học Tập (Wiki Navigation Hub)
+
+| Trang Chủ | So Sánh Core | So Sánh Framework | Kỹ Thuật Nâng Cao | Lộ Trình Thực Hành |
+| :---: | :---: | :---: | :---: | :---: |
+| 🏠 **[Trang Chủ (Wiki Root)](./README.md)** | 📊 **[Go vs Node.js Core](./GO_NODEJS.md)** | 🚀 **[Echo vs Gin vs NestJS vs Express](./framework-comparison/README.md)** | 🛠️ **[14 Kỹ Thuật Go Luyện Tập](./go-techniques/README.md)** | 🎯 **[20 Bài Tập Tự Luyện](./exercises/README.md)** |
+
+---
+
 
 ## 📖 Bảng Chú Thích Thuật Ngữ (Glossary)
 

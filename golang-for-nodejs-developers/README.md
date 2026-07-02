@@ -8,149 +8,159 @@
 
 # Golang for Node.js Developers
 
+---
+
+## 🗺️ Bản Đồ Wiki & Hệ Sinh Thái Học Tập (Wiki Navigation Hub)
+
+|                  Trang Chủ                   |                 So Sánh Core                 |                              So Sánh Framework                               |                       Kỹ Thuật Nâng Cao                       |                  Lộ Trình Thực Hành                  |
+| :------------------------------------------: | :------------------------------------------: | :--------------------------------------------------------------------------: | :-----------------------------------------------------------: | :--------------------------------------------------: |
+| 🏠 **[Trang Chủ (Wiki Root)](../README.md)** | 📊 **[Go vs Node.js Core](../GO_NODEJS.md)** | 🚀 **[Echo vs Gin vs NestJS vs Express](../framework-comparison/README.md)** | 🛠️ **[14 Kỹ Thuật Go Luyện Tập](../go-techniques/README.md)** | 🎯 **[20 Bài Tập Tự Luyện](../exercises/README.md)** |
+
+---
+
 > Examples of [Golang](https://golang.org/) examples compared to [Node.js](https://nodejs.org/) for learning
 
 [![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/miguelmota/golang-for-nodejs-developers/master/LICENSE)
 [![Mentioned in Awesome Go](https://awesome.re/mentioned-badge.svg)](https://github.com/avelino/awesome-go)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
 
-This guide full of examples is intended for people learning Go that are coming from Node.js, although the vice versa can work too. This is not meant to be a complete guide and it is assumed that you've gone through the [Tour of Go](https://tour.golang.org/) tutorial. This guide is meant to be barely good enough to help you at a high level understand how to do *X* in *Y* and doing further learning on your own is of course required.
+This guide full of examples is intended for people learning Go that are coming from Node.js, although the vice versa can work too. This is not meant to be a complete guide and it is assumed that you've gone through the [Tour of Go](https://tour.golang.org/) tutorial. This guide is meant to be barely good enough to help you at a high level understand how to do _X_ in _Y_ and doing further learning on your own is of course required.
 
 ## Contents
 
 - [Examples](#examples)
-  - [comments](#comments)
-  - [printing](#printing)
-  - [logging](#logging)
-  - [variables](#variables)
-  - [types](#types)
-    - [bool](#types)
-    - [number](#types)
-    - [string](#types)
-    - [array](#types)
-    - [object](#types)
-    - [function](#types)
-  - [type check](#type-check)
-  - [interpolation](#interpolation)
-  - [if/else](#ifelse)
-    - [ternary](#ifelse)
-  - [for](#for)
-  - [while](#while)
-  - [switch](#switch)
-  - [arrays](#arrays)
-    - [slicing](#arrays)
-    - [copying](#arrays)
-    - [appending](#arrays)
-    - [prepending](#arrays)
-  - [uint8 arrays](#uint8-arrays)
-  - [array iteration](#array-iteration)
-    - [looping](#array-iteration)
-    - [mapping](#array-iteration)
-    - [filtering](#array-iteration)
-    - [reducing](#array-iteration)
-	- [sorting](#array-sorting)
-  - [buffers](#buffers)
-    - [allocate](#buffers)
-    - [big endian](#buffers)
-    - [little endian](#buffers)
-    - [hex](#buffers)
-    - [compare](#buffers)
-    - [equals](#buffers)
-  - [maps](#maps)
-    - [iteration](#maps)
-  - [objects](#objects)
-  - [functions](#functions)
-  - [default values](#default-values)
-  - [destructuring](#destructuring)
-  - [spread operator](#spread-operator)
-  - [rest operator](#rest-operator)
-  - [swapping](#swapping)
-  - [classes](#classes)
-    - [constructors](#classes)
-    - [instantiation](#classes)
-    - ["this"](#classes)
-  - [generators](#generators)
-  - [datetime](#datetime)
-    - [parsing](#datetime)
-    - [formatting](#datetime)
-    - [unix timestamp](#datetime)
-  - [timeout](#timeout)
-  - [interval](#interval)
-  - [IIFE](#iife)
-  - [files](#files)
-    - [creating](#files)
-    - [opening](#files)
-    - [writing](#files)
-    - [reading](#files)
-    - [closing](#files)
-    - [deleting](#files)
-    - [file descriptors](#files)
-  - [json](#json)
-    - [parse](#json)
-    - [stringify](#json)
-  - [big numbers](#big-numbers)
-    - [uint](#big-numbers)
-    - [string](#big-numbers)
-    - [hex](#big-numbers)
-    - [buffers](#big-numbers)
-    - [compare](#buffers)
-    - [equals](#buffers)
-  - [promises](#promises)
-    - [then](#promises)
-    - [all](#promises)
-  - [async/await](#async-await)
-  - [streams](#streams)
-    - [reading](#streams)
-    - [writing](#streams)
-  - [event emitter](#event-emitter)
-  <!--
-    - [transform](#streams)
-  - [concurrency](#concurrency)
-    - [threads](#concurrency)
-    - [forking](#concurrency)
-  - [message passing](#message-passing)
-  - [first-class functions](#first-class-functions)
-  -->
-  - [errors](#errors)
-  - [try/catch](#trycatch)
-  - [exceptions](#exceptions)
-  - [regex](#regex)
-  - [exec (sync)](#exec-sync)
-  - [exec (async)](#exec-async)
-  - [tcp server](#tcp-server)
-  - [udp server](#udp-server)
-  - [http server](#http-server)
-  - [url parse](#url-parse)
-  - [gzip](#gzip)
-    - [compress](#gzip)
-    - [decompress](#gzip)
-  - [dns](#dns)
-    - [ns lookup](#dns)
-    - [ip lookup](#dns)
-    - [mx lookup](#dns)
-    - [txt lookup](#dns)
-    - [set resolution servers](#dns)
-  - [crypto](#crypto)
-    - [sha256](#crypto)
-  - [env vars](#env-vars)
-  - [cli args](#cli-args)
-  - [cli flags](#cli-flags)
-  - [stdout](#stdout)
-  - [stderr](#stderr)
-  - [stdin](#stdin)
-  - [modules](#modules)
-    - [installing](#modules)
-    - [updating](#modules)
-    - [removing](#modules)
-    - [importing](#modules)
-    - [exporting](#modules)
-    - [publishing](#modules)
-  - [stack trace](#stack-trace)
-  - [databases](#databases)
-    - [sqlite3](#databases)
-  - [testing](#testing)
-  - [benchmarking](#benchmarking)
-  - [documentation](#documentation)
+   - [comments](#comments)
+   - [printing](#printing)
+   - [logging](#logging)
+   - [variables](#variables)
+   - [types](#types)
+      - [bool](#types)
+      - [number](#types)
+      - [string](#types)
+      - [array](#types)
+      - [object](#types)
+      - [function](#types)
+   - [type check](#type-check)
+   - [interpolation](#interpolation)
+   - [if/else](#ifelse)
+      - [ternary](#ifelse)
+   - [for](#for)
+   - [while](#while)
+   - [switch](#switch)
+   - [arrays](#arrays)
+      - [slicing](#arrays)
+      - [copying](#arrays)
+      - [appending](#arrays)
+      - [prepending](#arrays)
+   - [uint8 arrays](#uint8-arrays)
+   - [array iteration](#array-iteration)
+      - [looping](#array-iteration)
+      - [mapping](#array-iteration)
+      - [filtering](#array-iteration)
+      - [reducing](#array-iteration)
+   - [sorting](#array-sorting)
+   - [buffers](#buffers)
+      - [allocate](#buffers)
+      - [big endian](#buffers)
+      - [little endian](#buffers)
+      - [hex](#buffers)
+      - [compare](#buffers)
+      - [equals](#buffers)
+   - [maps](#maps)
+      - [iteration](#maps)
+   - [objects](#objects)
+   - [functions](#functions)
+   - [default values](#default-values)
+   - [destructuring](#destructuring)
+   - [spread operator](#spread-operator)
+   - [rest operator](#rest-operator)
+   - [swapping](#swapping)
+   - [classes](#classes)
+      - [constructors](#classes)
+      - [instantiation](#classes)
+      - ["this"](#classes)
+   - [generators](#generators)
+   - [datetime](#datetime)
+      - [parsing](#datetime)
+      - [formatting](#datetime)
+      - [unix timestamp](#datetime)
+   - [timeout](#timeout)
+   - [interval](#interval)
+   - [IIFE](#iife)
+   - [files](#files)
+      - [creating](#files)
+      - [opening](#files)
+      - [writing](#files)
+      - [reading](#files)
+      - [closing](#files)
+      - [deleting](#files)
+      - [file descriptors](#files)
+   - [json](#json)
+      - [parse](#json)
+      - [stringify](#json)
+   - [big numbers](#big-numbers)
+      - [uint](#big-numbers)
+      - [string](#big-numbers)
+      - [hex](#big-numbers)
+      - [buffers](#big-numbers)
+      - [compare](#buffers)
+      - [equals](#buffers)
+   - [promises](#promises)
+      - [then](#promises)
+      - [all](#promises)
+   - [async/await](#async-await)
+   - [streams](#streams)
+      - [reading](#streams)
+      - [writing](#streams)
+   - [event emitter](#event-emitter)
+    <!--
+      - [transform](#streams)
+   - [concurrency](#concurrency)
+      - [threads](#concurrency)
+      - [forking](#concurrency)
+   - [message passing](#message-passing)
+   - [first-class functions](#first-class-functions)
+     -->
+   - [errors](#errors)
+   - [try/catch](#trycatch)
+   - [exceptions](#exceptions)
+   - [regex](#regex)
+   - [exec (sync)](#exec-sync)
+   - [exec (async)](#exec-async)
+   - [tcp server](#tcp-server)
+   - [udp server](#udp-server)
+   - [http server](#http-server)
+   - [url parse](#url-parse)
+   - [gzip](#gzip)
+      - [compress](#gzip)
+      - [decompress](#gzip)
+   - [dns](#dns)
+      - [ns lookup](#dns)
+      - [ip lookup](#dns)
+      - [mx lookup](#dns)
+      - [txt lookup](#dns)
+      - [set resolution servers](#dns)
+   - [crypto](#crypto)
+      - [sha256](#crypto)
+   - [env vars](#env-vars)
+   - [cli args](#cli-args)
+   - [cli flags](#cli-flags)
+   - [stdout](#stdout)
+   - [stderr](#stderr)
+   - [stdin](#stdin)
+   - [modules](#modules)
+      - [installing](#modules)
+      - [updating](#modules)
+      - [removing](#modules)
+      - [importing](#modules)
+      - [exporting](#modules)
+      - [publishing](#modules)
+   - [stack trace](#stack-trace)
+   - [databases](#databases)
+      - [sqlite3](#databases)
+   - [testing](#testing)
+   - [benchmarking](#benchmarking)
+   - [documentation](#documentation)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -159,6 +169,7 @@ This guide full of examples is intended for people learning Go that are coming f
 All sample code is available in [examples/](examples/)
 
 ### comments
+
 ---
 
 #### Node.js
@@ -188,14 +199,15 @@ func main() {
 **[⬆ back to top](#contents)**
 
 ### printing
+
 ---
 
 #### Node.js
 
 ```node
-console.log('print to stdout')
-console.log('format %s %d', 'example', 1)
-console.error('print to stderr')
+console.log('print to stdout');
+console.log('format %s %d', 'example', 1);
+console.error('print to stderr');
 ```
 
 Output
@@ -234,12 +246,13 @@ print to stderr
 **[⬆ back to top](#contents)**
 
 ### logging
+
 ---
 
 #### Node.js
 
 ```node
-console.log((new Date()).toISOString(), 'hello world')
+console.log(new Date().toISOString(), 'hello world');
 ```
 
 Output
@@ -272,19 +285,20 @@ _(Package `log` writes to standard error ánd prints the date and time of each l
 **[⬆ back to top](#contents)**
 
 ### variables
+
 ---
 
 #### Node.js
 
 ```node
 // function scoped
-var foo = 'foo'
+var foo = 'foo';
 
 // block scoped
-let bar = 'bar'
+let bar = 'bar';
 
 // constant
-const qux = 'qux'
+const qux = 'qux';
 ```
 
 #### Go
@@ -317,16 +331,17 @@ func main() {
 **[⬆ back to top](#contents)**
 
 ### interpolation
+
 ---
 
 #### Node.js
 
 ```node
-const name = 'bob'
-const age = 21
-const message = `${name} is ${age} years old`
+const name = 'bob';
+const age = 21;
+const message = `${name} is ${age} years old`;
 
-console.log(message)
+console.log(message);
 ```
 
 Output
@@ -360,31 +375,32 @@ bob is 21 years old
 **[⬆ back to top](#contents)**
 
 ### types
+
 ---
 
 #### Node.js
 
 ```node
 // primitives
-const myBool = true
-const myNumber = 10
-const myString = 'foo'
-const mySymbol = Symbol('bar')
-const myNull = null
-const myUndefined = undefined
+const myBool = true;
+const myNumber = 10;
+const myString = 'foo';
+const mySymbol = Symbol('bar');
+const myNull = null;
+const myUndefined = undefined;
 
 // object types
-const myObject = {}
-const myArray = []
-const myFunction = function() {}
-const myError = new Error('error')
-const myDate = new Date()
-const myRegex = /a/
-const myMap = new Map()
-const mySet = new Set()
-const myPromise = Promise.resolve()
-const myGenerator = function *() {}
-const myClass = class {}
+const myObject = {};
+const myArray = [];
+const myFunction = function () {};
+const myError = new Error('error');
+const myDate = new Date();
+const myRegex = /a/;
+const myMap = new Map();
+const mySet = new Set();
+const myPromise = Promise.resolve();
+const myGenerator = function* () {};
+const myClass = class {};
 ```
 
 #### Go
@@ -455,38 +471,39 @@ func main() {
 **[⬆ back to top](#contents)**
 
 ### type check
+
 ---
 
 #### Node.js
 
 ```node
 function typeOf(obj) {
-  return {}.toString.call(obj).split(' ')[1].slice(0,-1).toLowerCase()
+   return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
 }
 
 const values = [
-  true,
-  10,
-  'foo',
-  Symbol('bar'),
-  null,
-  undefined,
-  NaN,
-  {},
-  [],
-  function(){},
-  new Error(),
-  new Date(),
-  /a/,
-  new Map(),
-  new Set(),
-  Promise.resolve(),
-  function *() {},
-  class {},
-]
+   true,
+   10,
+   'foo',
+   Symbol('bar'),
+   null,
+   undefined,
+   NaN,
+   {},
+   [],
+   function () {},
+   new Error(),
+   new Date(),
+   /a/,
+   new Map(),
+   new Set(),
+   Promise.resolve(),
+   function* () {},
+   class {},
+];
 
 for (const value of values) {
-  console.log(typeOf(value))
+   console.log(typeOf(value));
 }
 ```
 
@@ -599,28 +616,29 @@ time.Time
 **[⬆ back to top](#contents)**
 
 ### if/else
+
 ---
 
 #### Node.js
 
 ```node
-const array = [1, 2]
+const array = [1, 2];
 
 if (array) {
-  console.log('array exists')
+   console.log('array exists');
 }
 
 if (array.length === 2) {
-  console.log('length is 2')
+   console.log('length is 2');
 } else if (array.length === 1) {
-  console.log('length is 1')
+   console.log('length is 1');
 } else {
-  console.log('length is other')
+   console.log('length is other');
 }
 
-const isOddLength = array.length % 2 === 1 ? 'yes' : 'no'
+const isOddLength = array.length % 2 === 1 ? 'yes' : 'no';
 
-console.log(isOddLength)
+console.log(isOddLength);
 ```
 
 Output
@@ -674,13 +692,14 @@ no
 **[⬆ back to top](#contents)**
 
 ### for
+
 ---
 
 #### Node.js
 
 ```node
 for (let i = 0; i <= 5; i++) {
-  console.log(i)
+   console.log(i);
 }
 ```
 
@@ -723,17 +742,18 @@ Output
 **[⬆ back to top](#contents)**
 
 ### while
+
 ---
 
 #### Node.js
 
 ```node
-let i = 0
+let i = 0;
 
 while (i <= 5) {
-  console.log(i)
+   console.log(i);
 
-  i++
+   i++;
 }
 ```
 
@@ -750,7 +770,7 @@ Output
 
 #### Go
 
-(there's no *while* keyword in Go but the same functionality is achieved by using *for*)
+(there's no _while_ keyword in Go but the same functionality is achieved by using _for_)
 
 ```go
 package main
@@ -782,36 +802,37 @@ Output
 **[⬆ back to top](#contents)**
 
 ### switch
+
 ---
 
 #### Node.js
 
 ```node
-const value = 'b'
+const value = 'b';
 
-switch(value) {
-  case 'a':
-    console.log('A')
-    break
-  case 'b':
-    console.log('B')
-    break
-  case 'c':
-    console.log('C')
-    break
-  default:
-    console.log('first default')
+switch (value) {
+   case 'a':
+      console.log('A');
+      break;
+   case 'b':
+      console.log('B');
+      break;
+   case 'c':
+      console.log('C');
+      break;
+   default:
+      console.log('first default');
 }
 
-switch(value) {
-  case 'a':
-    console.log('A - falling through')
-  case 'b':
-    console.log('B - falling through')
-  case 'c':
-    console.log('C - falling through')
-  default:
-    console.log('second default')
+switch (value) {
+   case 'a':
+      console.log('A - falling through');
+   case 'b':
+      console.log('B - falling through');
+   case 'c':
+      console.log('C - falling through');
+   default:
+      console.log('second default');
 }
 ```
 
@@ -873,6 +894,7 @@ second default
 **[⬆ back to top](#contents)**
 
 ### arrays
+
 ---
 
 Examples of slicing, copying, appending, and prepending arrays.
@@ -880,20 +902,20 @@ Examples of slicing, copying, appending, and prepending arrays.
 #### Node.js
 
 ```node
-const array = [1, 2, 3, 4, 5]
-console.log(array)
+const array = [1, 2, 3, 4, 5];
+console.log(array);
 
-const clone = [...array]
-console.log(clone)
+const clone = [...array];
+console.log(clone);
 
-const sub = array.slice(2, 4)
-console.log(sub)
+const sub = array.slice(2, 4);
+console.log(sub);
 
-const concatenated = [...clone, 6, 7]
-console.log(concatenated)
+const concatenated = [...clone, 6, 7];
+console.log(concatenated);
 
-const prepended = [-2, -1, 0, ...concatenated]
-console.log(prepended)
+const prepended = [-2, -1, 0, ...concatenated];
+console.log(prepended);
 ```
 
 Output
@@ -947,33 +969,34 @@ Output
 **[⬆ back to top](#contents)**
 
 ### uint8 arrays
+
 ---
 
 #### Node.js
 
 ```node
-const array = new Uint8Array(10)
-console.log(array)
+const array = new Uint8Array(10);
+console.log(array);
 
-const offset = 1
+const offset = 1;
 
-array.set([1, 2, 3], offset)
-console.log(array)
+array.set([1, 2, 3], offset);
+console.log(array);
 
-const sub = array.subarray(2)
-console.log(sub)
+const sub = array.subarray(2);
+console.log(sub);
 
-const sub2 = array.subarray(2, 4)
-console.log(sub2)
+const sub2 = array.subarray(2, 4);
+console.log(sub2);
 
-console.log(array)
-const value = 9
-const start = 5
-const end = 10
-array.fill(value, start, end)
-console.log(array)
+console.log(array);
+const value = 9;
+const start = 5;
+const end = 10;
+array.fill(value, start, end);
+console.log(array);
 
-console.log(array.byteLength)
+console.log(array.byteLength);
 ```
 
 Output
@@ -1039,6 +1062,7 @@ Output
 **[⬆ back to top](#contents)**
 
 ### array iteration
+
 ---
 
 Examples of iterating, mapping, filtering, and reducing arrays.
@@ -1046,33 +1070,33 @@ Examples of iterating, mapping, filtering, and reducing arrays.
 #### Node.js
 
 ```node
-const array = ['a', 'b', 'c']
+const array = ['a', 'b', 'c'];
 
 array.forEach((value, i) => {
-  console.log(i, value)
-})
+   console.log(i, value);
+});
 
-const mapped = array.map(value => {
-  return value.toUpperCase()
-})
+const mapped = array.map((value) => {
+   return value.toUpperCase();
+});
 
-console.log(mapped)
+console.log(mapped);
 
 const filtered = array.filter((value, i) => {
-  return i % 2 === 0
-})
+   return i % 2 === 0;
+});
 
-console.log(filtered)
+console.log(filtered);
 
 const reduced = array.reduce((acc, value, i) => {
-  if (i % 2 === 0) {
-    acc.push(value.toUpperCase())
-  }
+   if (i % 2 === 0) {
+      acc.push(value.toUpperCase());
+   }
 
-  return acc
-}, [])
+   return acc;
+}, []);
 
-console.log(reduced)
+console.log(reduced);
 ```
 
 Output
@@ -1166,6 +1190,7 @@ Output
 **[⬆ back to top](#contents)**
 
 ### array sorting
+
 ---
 
 Examples of how to sort an array
@@ -1173,44 +1198,44 @@ Examples of how to sort an array
 #### Node.js
 
 ```node
-const stringArray = ['a', 'd', 'z', 'b', 'c', 'y']
-const stringArraySortedAsc = [...stringArray].sort((a, b) => (a > b ? 1 : -1))
-console.log(stringArraySortedAsc)
+const stringArray = ['a', 'd', 'z', 'b', 'c', 'y'];
+const stringArraySortedAsc = [...stringArray].sort((a, b) => (a > b ? 1 : -1));
+console.log(stringArraySortedAsc);
 
-const stringArraySortedDesc = [...stringArray].sort((a, b) => (a > b ? -1 : 1))
-console.log(stringArraySortedDesc)
+const stringArraySortedDesc = [...stringArray].sort((a, b) => (a > b ? -1 : 1));
+console.log(stringArraySortedDesc);
 
-const numberArray = [1, 3, 5, 9, 4, 2, 0]
-const numberArraySortedAsc = [...numberArray].sort((a, b) => a - b)
-console.log(numberArraySortedAsc)
+const numberArray = [1, 3, 5, 9, 4, 2, 0];
+const numberArraySortedAsc = [...numberArray].sort((a, b) => a - b);
+console.log(numberArraySortedAsc);
 
-const numberArraySortedDesc = [...numberArray].sort((a, b) => b - a)
-console.log(numberArraySortedDesc)
+const numberArraySortedDesc = [...numberArray].sort((a, b) => b - a);
+console.log(numberArraySortedDesc);
 
 const collection = [
-  {
-    name: 'Li L',
-    age: 8
-  },
-  {
-    name: 'Json C',
-    age: 3
-  },
-  {
-    name: 'Zack W',
-    age: 15
-  },
-  {
-    name: 'Yi M',
-    age: 2
-  }
-]
+   {
+      name: 'Li L',
+      age: 8,
+   },
+   {
+      name: 'Json C',
+      age: 3,
+   },
+   {
+      name: 'Zack W',
+      age: 15,
+   },
+   {
+      name: 'Yi M',
+      age: 2,
+   },
+];
 
-const collectionSortedByAgeAsc = [...collection].sort((a, b) => a.age - b.age)
-console.log(collectionSortedByAgeAsc)
+const collectionSortedByAgeAsc = [...collection].sort((a, b) => a.age - b.age);
+console.log(collectionSortedByAgeAsc);
 
-const collectionSortedByAgeDesc = [...collection].sort((a, b) => b.age - a.age)
-console.log(collectionSortedByAgeDesc)
+const collectionSortedByAgeDesc = [...collection].sort((a, b) => b.age - a.age);
+console.log(collectionSortedByAgeDesc);
 ```
 
 Output
@@ -1304,6 +1329,7 @@ Output
 **[⬆ back to top](#contents)**
 
 ### buffers
+
 ---
 
 Examples of how to allocate a buffer, write in big or little endian format, encode to a hex string, and check if buffers are equal.
@@ -1311,33 +1337,33 @@ Examples of how to allocate a buffer, write in big or little endian format, enco
 #### Node.js
 
 ```node
-const buf = Buffer.alloc(6)
+const buf = Buffer.alloc(6);
 
-let value = 0x1234567890ab
-let offset = 0
-let byteLength = 6
+let value = 0x1234567890ab;
+let offset = 0;
+let byteLength = 6;
 
-buf.writeUIntBE(value, offset, byteLength)
+buf.writeUIntBE(value, offset, byteLength);
 
-let hexstr = buf.toString('hex')
-console.log(hexstr)
+let hexstr = buf.toString('hex');
+console.log(hexstr);
 
-const buf2 = Buffer.alloc(6)
+const buf2 = Buffer.alloc(6);
 
-value = 0x1234567890ab
-offset = 0
-byteLength = 6
+value = 0x1234567890ab;
+offset = 0;
+byteLength = 6;
 
-buf2.writeUIntLE(value, offset, byteLength)
+buf2.writeUIntLE(value, offset, byteLength);
 
-hexstr = buf2.toString('hex')
-console.log(hexstr)
+hexstr = buf2.toString('hex');
+console.log(hexstr);
 
-let isEqual = Buffer.compare(buf, buf2) === 0
-console.log(isEqual)
+let isEqual = Buffer.compare(buf, buf2) === 0;
+console.log(isEqual);
 
-isEqual = Buffer.compare(buf, buf) === 0
-console.log(isEqual)
+isEqual = Buffer.compare(buf, buf) === 0;
+console.log(isEqual);
 ```
 
 Output
@@ -1427,41 +1453,42 @@ true
 **[⬆ back to top](#contents)**
 
 ### maps
+
 ---
 
 #### Node.js
 
 ```node
-const map = new Map()
-map.set('foo', 'bar')
+const map = new Map();
+map.set('foo', 'bar');
 
-let found = map.has('foo')
-console.log(found)
+let found = map.has('foo');
+console.log(found);
 
-let item = map.get('foo')
-console.log(item)
+let item = map.get('foo');
+console.log(item);
 
-map.delete('foo')
+map.delete('foo');
 
-found = map.has('foo')
-console.log(found)
+found = map.has('foo');
+console.log(found);
 
-item = map.get('foo')
-console.log(item)
+item = map.get('foo');
+console.log(item);
 
-const map2 = {}
-map2['foo'] = 'bar'
-item = map2['foo']
-delete map2['foo']
+const map2 = {};
+map2['foo'] = 'bar';
+item = map2['foo'];
+delete map2['foo'];
 
 const map3 = new Map([
-  ['foo', 100],
-  ['bar', 200],
-  ['baz', 300]
-])
+   ['foo', 100],
+   ['bar', 200],
+   ['baz', 300],
+]);
 
 for (const [key, value] of map3) {
-  console.log(key, value)
+   console.log(key, value);
 }
 ```
 
@@ -1540,25 +1567,26 @@ After DeleteFunc: map[bar:200 foo:100]
 **[⬆ back to top](#contents)**
 
 ### objects
+
 ---
 
 #### Node.js
 
 ```node
 const obj = {
-  someProperties: {
-    foo: 'bar'
-  },
-  someMethod(prop) {
-    return this.someProperties[prop]
-  }
-}
+   someProperties: {
+      foo: 'bar',
+   },
+   someMethod(prop) {
+      return this.someProperties[prop];
+   },
+};
 
-let item = obj.someProperties.foo
-console.log(item)
+let item = obj.someProperties.foo;
+console.log(item);
 
-item = obj.someMethod('foo')
-console.log(item)
+item = obj.someMethod('foo');
+console.log(item);
 ```
 
 Output
@@ -1612,6 +1640,7 @@ bar
 **[⬆ back to top](#contents)**
 
 ### functions
+
 ---
 
 #### Node.js
@@ -1655,20 +1684,21 @@ Output
 **[⬆ back to top](#contents)**
 
 ### default values
+
 ---
 
 #### Node.js
 
 ```node
 function greet(name = 'stranger') {
-  return `hello ${name}`
+   return `hello ${name}`;
 }
 
-let message = greet()
-console.log(message)
+let message = greet();
+console.log(message);
 
-message = greet('bob')
-console.log(message)
+message = greet('bob');
+console.log(message);
 ```
 
 Output
@@ -1717,15 +1747,16 @@ hello bob
 **[⬆ back to top](#contents)**
 
 ### destructuring
+
 ---
 
 #### Node.js
 
 ```node
-const obj = { key: 'foo', value: 'bar' }
+const obj = { key: 'foo', value: 'bar' };
 
-const { key, value } = obj
-console.log(key, value)
+const { key, value } = obj;
+console.log(key, value);
 ```
 
 Output
@@ -1776,14 +1807,15 @@ foo bar
 **[⬆ back to top](#contents)**
 
 ### spread operator
+
 ---
 
 #### Node.js
 
 ```node
-const array = [1, 2, 3, 4, 5]
+const array = [1, 2, 3, 4, 5];
 
-console.log(...array)
+console.log(...array);
 ```
 
 Output
@@ -1820,23 +1852,24 @@ Output
 **[⬆ back to top](#contents)**
 
 ### rest operator
+
 ---
 
 #### Node.js
 
 ```node
 function sum(...nums) {
-  let t = 0
+   let t = 0;
 
-  for (const n of nums) {
-    t += n
-  }
+   for (const n of nums) {
+      t += n;
+   }
 
-  return t
+   return t;
 }
 
-const total = sum(1, 2, 3, 4, 5)
-console.log(total)
+const total = sum(1, 2, 3, 4, 5);
+console.log(total);
 ```
 
 Output
@@ -1876,19 +1909,20 @@ Output
 **[⬆ back to top](#contents)**
 
 ### swapping
+
 ---
 
 #### Node.js
 
 ```node
-let a = 'foo'
-let b = 'bar'
+let a = 'foo';
+let b = 'bar';
 
 console.log(a, b);
 
-[b, a] = [a, b]
+[b, a] = [a, b];
 
-console.log(a, b)
+console.log(a, b);
 ```
 
 Output
@@ -1927,6 +1961,7 @@ bar foo
 **[⬆ back to top](#contents)**
 
 ### classes
+
 ---
 
 Examples of classes, constructors, instantiation, and "this" keyword.
@@ -1935,17 +1970,17 @@ Examples of classes, constructors, instantiation, and "this" keyword.
 
 ```node
 export class Foo {
-  constructor(value) {
-    this.item = value;
-  }
+   constructor(value) {
+      this.item = value;
+   }
 
-  getItem() {
-    return this.item;
-  }
+   getItem() {
+      return this.item;
+   }
 
-  setItem(value) {
-    this.item = value;
-  }
+   setItem(value) {
+      this.item = value;
+   }
 }
 
 const foo = new Foo('bar');
@@ -2012,30 +2047,31 @@ qux
 **[⬆ back to top](#contents)**
 
 ### generators
+
 ---
 
 #### Node.js
 
 ```node
 export function* generator() {
-  yield 'hello';
-  yield 'world';
+   yield 'hello';
+   yield 'world';
 }
 
 const gen = generator();
 
 while (true) {
-  const { value, done } = gen.next();
-  console.log(value, done);
+   const { value, done } = gen.next();
+   console.log(value, done);
 
-  if (done) {
-    break;
-  }
+   if (done) {
+      break;
+   }
 }
 
 // alternatively
 for (const value of generator()) {
-  console.log(value);
+   console.log(value);
 }
 ```
 
@@ -2104,6 +2140,7 @@ world
 **[⬆ back to top](#contents)**
 
 ### datetime
+
 ---
 
 Examples of parsing, formatting, and getting unix timestamp of dates.
@@ -2125,9 +2162,9 @@ console.log(futureDate.toString());
 
 // Modern way to format
 const formatted = date.toLocaleDateString('en-US', {
-  month: '2-digit',
-  day: '2-digit',
-  year: 'numeric',
+   month: '2-digit',
+   day: '2-digit',
+   year: 'numeric',
 });
 console.log(formatted);
 ```
@@ -2186,6 +2223,7 @@ Output
 **[⬆ back to top](#contents)**
 
 ### timeout
+
 ---
 
 #### Node.js
@@ -2194,7 +2232,7 @@ Output
 import { setTimeout } from 'node:timers';
 
 const callback = () => {
-  console.log('called');
+   console.log('called');
 };
 
 setTimeout(callback, 1000);
@@ -2240,23 +2278,24 @@ called
 **[⬆ back to top](#contents)**
 
 ### interval
+
 ---
 
 #### Node.js
 
 ```node
-let i = 0
+let i = 0;
 
-const id = setInterval(callback, 1000)
+const id = setInterval(callback, 1000);
 
 function callback() {
-  console.log('called', i)
+   console.log('called', i);
 
-  if (i === 3) {
-    clearInterval(id)
-  }
+   if (i === 3) {
+      clearInterval(id);
+   }
 
-  i++
+   i++;
 }
 ```
 
@@ -2312,6 +2351,7 @@ called 3
 **[⬆ back to top](#contents)**
 
 ### IIFE
+
 ---
 
 Immediately invoked function expression
@@ -2320,8 +2360,8 @@ Immediately invoked function expression
 
 ```node
 ((name) => {
-  console.log('hello', name)
-})('bob')
+   console.log('hello', name);
+})('bob');
 ```
 
 Output
@@ -2353,6 +2393,7 @@ hello bob
 **[⬆ back to top](#contents)**
 
 ### files
+
 ---
 
 Examples of creating, opening, writing, reading, closing, and deleting files.
@@ -2360,35 +2401,35 @@ Examples of creating, opening, writing, reading, closing, and deleting files.
 #### Node.js
 
 ```node
-import { openSync, writeSync, readSync, closeSync, unlinkSync } from 'node:fs'
-import { Buffer } from 'node:buffer'
+import { openSync, writeSync, readSync, closeSync, unlinkSync } from 'node:fs';
+import { Buffer } from 'node:buffer';
 
 // create file
-const createFd = openSync('test.txt', 'w')
-closeSync(createFd)
+const createFd = openSync('test.txt', 'w');
+closeSync(createFd);
 
 // open file (returns file descriptor)
-const fd = openSync('test.txt', 'r+')
+const fd = openSync('test.txt', 'r+');
 
-const wbuf = Buffer.from('hello world.')
-const rbuf = Buffer.alloc(12)
-const off = 0
-const len = 12
-const pos = 0
+const wbuf = Buffer.from('hello world.');
+const rbuf = Buffer.alloc(12);
+const off = 0;
+const len = 12;
+const pos = 0;
 
 // write file
-writeSync(fd, wbuf, 0, wbuf.length, pos)
+writeSync(fd, wbuf, 0, wbuf.length, pos);
 
 // read file
-readSync(fd, rbuf, off, len, pos)
+readSync(fd, rbuf, off, len, pos);
 
-console.log(rbuf.toString())
+console.log(rbuf.toString());
 
 // close file
-closeSync(fd)
+closeSync(fd);
 
 // delete file
-unlinkSync('test.txt')
+unlinkSync('test.txt');
 ```
 
 Output
@@ -2456,6 +2497,7 @@ hello world.
 **[⬆ back to top](#contents)**
 
 ### json
+
 ---
 
 Examples of how to parse (unmarshal) and stringify (marshal) JSON.
@@ -2463,13 +2505,13 @@ Examples of how to parse (unmarshal) and stringify (marshal) JSON.
 #### Node.js
 
 ```node
-let jsonstr = '{"foo":"bar"}'
+let jsonstr = '{"foo":"bar"}';
 
-const parsed = JSON.parse(jsonstr)
-console.log(parsed)
+const parsed = JSON.parse(jsonstr);
+console.log(parsed);
 
-jsonstr = JSON.stringify(parsed)
-console.log(jsonstr)
+jsonstr = JSON.stringify(parsed);
+console.log(jsonstr);
 ```
 
 Output
@@ -2523,6 +2565,7 @@ Output
 **[⬆ back to top](#contents)**
 
 ### big numbers
+
 ---
 
 Examples of creating big number types from and to uint, string, hex, and buffers.
@@ -2530,35 +2573,35 @@ Examples of creating big number types from and to uint, string, hex, and buffers
 #### Node.js
 
 ```node
-import { Buffer } from 'node:buffer'
+import { Buffer } from 'node:buffer';
 
-let bn = 75n
-console.log(bn.toString(10))
+let bn = 75n;
+console.log(bn.toString(10));
 
-bn = BigInt('75')
-console.log(bn.toString(10))
+bn = BigInt('75');
+console.log(bn.toString(10));
 
-bn = BigInt(0x4b)
-console.log(bn.toString(10))
+bn = BigInt(0x4b);
+console.log(bn.toString(10));
 
-bn = BigInt('0x4b')
-console.log(bn.toString(10))
+bn = BigInt('0x4b');
+console.log(bn.toString(10));
 
-bn = BigInt('0x' + Buffer.from('4b', 'hex').toString('hex'))
-console.log(bn.toString(10))
-console.log(Number(bn))
-console.log(bn.toString(16))
-console.log(Buffer.from(bn.toString(16), 'hex'))
+bn = BigInt('0x' + Buffer.from('4b', 'hex').toString('hex'));
+console.log(bn.toString(10));
+console.log(Number(bn));
+console.log(bn.toString(16));
+console.log(Buffer.from(bn.toString(16), 'hex'));
 
-const bn2 = BigInt(100)
-const isEqual = bn === bn2
-console.log(isEqual)
+const bn2 = BigInt(100);
+const isEqual = bn === bn2;
+console.log(isEqual);
 
-const isGreater = bn > bn2
-console.log(isGreater)
+const isGreater = bn > bn2;
+console.log(isGreater);
 
-const isLesser = bn < bn2
-console.log(isLesser)
+const isLesser = bn < bn2;
+console.log(isLesser);
 ```
 
 Output
@@ -2643,6 +2686,7 @@ true
 **[⬆ back to top](#contents)**
 
 ### promises
+
 ---
 
 #### Node.js
@@ -2651,25 +2695,25 @@ true
 import { setTimeout } from 'node:timers/promises';
 
 async function asyncMethod(value) {
-  await setTimeout(1000);
-  return `resolved: ${value}`;
+   await setTimeout(1000);
+   return `resolved: ${value}`;
 }
 
 async function main() {
-  asyncMethod('foo')
-    .then(result => console.log(result))
-    .catch(err => console.error(err));
+   asyncMethod('foo')
+      .then((result) => console.log(result))
+      .catch((err) => console.error(err));
 
-  try {
-    const results = await Promise.all([
-      asyncMethod('A'),
-      asyncMethod('B'),
-      asyncMethod('C')
-    ]);
-    console.log(results);
-  } catch (err) {
-    console.error(err);
-  }
+   try {
+      const results = await Promise.all([
+         asyncMethod('A'),
+         asyncMethod('B'),
+         asyncMethod('C'),
+      ]);
+      console.log(results);
+   } catch (err) {
+      console.error(err);
+   }
 }
 
 main();
@@ -2782,6 +2826,7 @@ resolved: foo
 **[⬆ back to top](#contents)**
 
 ### async/await
+
 ---
 
 #### Node.js
@@ -2790,23 +2835,23 @@ resolved: foo
 import { setTimeout } from 'node:timers/promises';
 
 async function hello(name) {
-  await setTimeout(1000);
-  if (name === 'fail') {
-    throw new Error('failed');
-  }
-  return `hello ${name}`;
+   await setTimeout(1000);
+   if (name === 'fail') {
+      throw new Error('failed');
+   }
+   return `hello ${name}`;
 }
 
 async function main() {
-  try {
-    let output = await hello('bob');
-    console.log(output);
+   try {
+      let output = await hello('bob');
+      console.log(output);
 
-    output = await hello('fail');
-    console.log(output);
-  } catch (err) {
-    console.error(err.message);
-  }
+      output = await hello('fail');
+      console.log(output);
+   } catch (err) {
+      console.error(err.message);
+   }
 }
 
 main();
@@ -2877,6 +2922,7 @@ failed
 **[⬆ back to top](#contents)**
 
 ### streams
+
 ---
 
 Examples of reading and writing streams
@@ -2887,7 +2933,7 @@ Examples of reading and writing streams
 import { Readable, Writable } from 'node:stream';
 
 const inStream = new Readable({
-  read() {}
+   read() {},
 });
 
 inStream.push(Buffer.from('foo'));
@@ -2899,10 +2945,10 @@ inStream.pipe(process.stdout);
 inStream.on('end', () => console.log());
 
 const outStream = new Writable({
-  write(chunk, encoding, callback) {
-    console.log(`received: ${chunk.toString('utf8')}`);
-    callback();
-  }
+   write(chunk, encoding, callback) {
+      console.log(`received: ${chunk.toString('utf8')}`);
+      callback();
+   },
 });
 
 outStream.write(Buffer.from('abc'));
@@ -2987,6 +3033,7 @@ received: xyz
 **[⬆ back to top](#contents)**
 
 ### event emitter
+
 ---
 
 #### Node.js
@@ -2998,11 +3045,11 @@ class MyEmitter extends EventEmitter {}
 const myEmitter = new MyEmitter();
 
 myEmitter.on('my-event', (msg) => {
-  console.log(msg);
+   console.log(msg);
 });
 
 myEmitter.on('my-other-event', (msg) => {
-  console.log(msg);
+   console.log(msg);
 });
 
 myEmitter.emit('my-event', 'hello world');
@@ -3064,30 +3111,31 @@ hello other world
 **[⬆ back to top](#contents)**
 
 ### errors
+
 ---
 
 #### Node.js
 
 ```node
-const err1 = new Error('some error')
+const err1 = new Error('some error');
 
-console.log(err1)
+console.log(err1);
 
-class FooError extends Error{
-  constructor(message) {
-    super(message)
-    this.name = 'FooError'
-    this.message = message
-  }
+class FooError extends Error {
+   constructor(message) {
+      super(message);
+      this.name = 'FooError';
+      this.message = message;
+   }
 
-  toString() {
-    return this.message
-  }
+   toString() {
+      return this.message;
+   }
 }
 
-const err2 = new FooError('my custom error')
+const err2 = new FooError('my custom error');
 
-console.log(err2)
+console.log(err2);
 ```
 
 Output
@@ -3138,26 +3186,27 @@ my custom error
 **[⬆ back to top](#contents)**
 
 ### try/catch
+
 ---
 
 #### Node.js
 
 ```javascript
 function foo(fail) {
-  if (fail) {
-    throw Error('my error')
-  }
+   if (fail) {
+      throw Error('my error');
+   }
 }
 
 function main() {
-  try {
-    foo(true)
-  } catch(err) {
-    console.log(`caught error: ${err.message}`)
-  }
+   try {
+      foo(true);
+   } catch (err) {
+      console.log(`caught error: ${err.message}`);
+   }
 }
 
-main()
+main();
 ```
 
 Output
@@ -3201,6 +3250,7 @@ caught error: my error
 **[⬆ back to top](#contents)**
 
 ### exceptions
+
 ---
 
 #### Node.js
@@ -3209,19 +3259,19 @@ caught error: my error
 import process from 'node:process';
 
 function foo() {
-  throw Error('my exception')
+   throw Error('my exception');
 }
 
 function main() {
-  foo()
+   foo();
 }
 
-process.on('uncaughtException', err => {
-  console.log(`caught exception: ${err.message}`)
-  process.exit(1)
-})
+process.on('uncaughtException', (err) => {
+   console.log(`caught exception: ${err.message}`);
+   process.exit(1);
+});
 
-main()
+main();
 ```
 
 Output
@@ -3263,21 +3313,22 @@ caught exception: my exception
 **[⬆ back to top](#contents)**
 
 ### regex
+
 ---
 
 #### Node.js
 
 ```javascript
-let input = 'foobar'
-const replaced = input.replace(/foo(.*)/i, 'qux$1')
-console.log(replaced)
+let input = 'foobar';
+const replaced = input.replace(/foo(.*)/i, 'qux$1');
+console.log(replaced);
 
-const match = /o{2}/i.test(input)
-console.log(match)
+const match = /o{2}/i.test(input);
+console.log(match);
 
-input = '111-222-333'
-const matches = input.match(/([0-9]+)/gi)
-console.log(matches)
+input = '111-222-333';
+const matches = input.match(/([0-9]+)/gi);
+console.log(matches);
 ```
 
 Output
@@ -3326,6 +3377,7 @@ true
 **[⬆ back to top](#contents)**
 
 ### exec (sync)
+
 ---
 
 #### Node.js
@@ -3373,6 +3425,7 @@ hello world
 **[⬆ back to top](#contents)**
 
 ### exec (async)
+
 ---
 
 #### Node.js
@@ -3382,17 +3435,17 @@ import { exec } from 'node:child_process';
 import process from 'node:process';
 
 exec("echo 'hello world'", (error, stdout, stderr) => {
-  if (error) {
-    console.error(error);
-  }
+   if (error) {
+      console.error(error);
+   }
 
-  if (stderr) {
-    console.error(stderr);
-  }
+   if (stderr) {
+      console.error(stderr);
+   }
 
-  if (stdout) {
-    process.stdout.write(stdout);
-  }
+   if (stdout) {
+      process.stdout.write(stdout);
+   }
 });
 ```
 
@@ -3429,6 +3482,7 @@ hello world
 **[⬆ back to top](#contents)**
 
 ### tcp server
+
 ---
 
 #### Node.js
@@ -3437,13 +3491,13 @@ hello world
 import net from 'node:net';
 
 function handler(socket) {
-  socket.write('Received: ');
-  socket.pipe(socket);
+   socket.write('Received: ');
+   socket.pipe(socket);
 }
 
 const server = net.createServer(handler);
 server.listen(3000, () => {
-  console.log('TCP server listening on port 3000');
+   console.log('TCP server listening on port 3000');
 });
 ```
 
@@ -3511,6 +3565,7 @@ Received: hello
 **[⬆ back to top](#contents)**
 
 ### udp server
+
 ---
 
 #### Node.js
@@ -3521,18 +3576,18 @@ import dgram from 'node:dgram';
 const server = dgram.createSocket('udp4');
 
 server.on('error', (err) => {
-  console.error(err);
-  server.close();
+   console.error(err);
+   server.close();
 });
 
 server.on('message', (msg, rinfo) => {
-  const data = msg.toString('utf8').trim();
-  console.log(`received: ${data} from ${rinfo.address}:${rinfo.port}`);
+   const data = msg.toString('utf8').trim();
+   console.log(`received: ${data} from ${rinfo.address}:${rinfo.port}`);
 });
 
 server.on('listening', () => {
-  const address = server.address();
-  console.log(`server listening ${address.address}:${address.port}`);
+   const address = server.address();
+   console.log(`server listening ${address.address}:${address.port}`);
 });
 
 server.bind(3000);
@@ -3596,6 +3651,7 @@ received: hello world from 127.0.0.1:50275
 **[⬆ back to top](#contents)**
 
 ### http server
+
 ---
 
 #### Node.js
@@ -3604,14 +3660,14 @@ received: hello world from 127.0.0.1:50275
 import http from 'node:http';
 
 function handler(request, response) {
-  response.writeHead(200, { 'Content-Type': 'text/plain' });
-  response.write('hello world');
-  response.end();
+   response.writeHead(200, { 'Content-Type': 'text/plain' });
+   response.write('hello world');
+   response.end();
 }
 
 const server = http.createServer(handler);
 server.listen(8080, () => {
-  console.log('HTTP server listening on port 8080');
+   console.log('HTTP server listening on port 8080');
 });
 ```
 
@@ -3657,6 +3713,7 @@ hello world
 **[⬆ back to top](#contents)**
 
 ### url parse
+
 ---
 
 #### Node.js
@@ -3727,31 +3784,32 @@ map[foo:[bar]]
 **[⬆ back to top](#contents)**
 
 ### gzip
+
 ---
 
 #### Node.js
 
 ```node
-import zlib from 'node:zlib'
-import { Buffer } from 'node:buffer'
+import zlib from 'node:zlib';
+import { Buffer } from 'node:buffer';
 
-const data = Buffer.from('hello world', 'utf-8')
+const data = Buffer.from('hello world', 'utf-8');
 
 zlib.gzip(data, (err, compressed) => {
-  if (err) {
-    console.error(err)
-  }
+   if (err) {
+      console.error(err);
+   }
 
-  console.log(compressed)
+   console.log(compressed);
 
-  zlib.unzip(compressed, (err, decompressed) => {
-    if (err) {
-      console.error(err)
-    }
+   zlib.unzip(compressed, (err, decompressed) => {
+      if (err) {
+         console.error(err);
+      }
 
-    console.log(decompressed.toString())
-  })
-})
+      console.log(decompressed.toString());
+   });
+});
 ```
 
 Output
@@ -3811,6 +3869,7 @@ hello world
 **[⬆ back to top](#contents)**
 
 ### dns
+
 ---
 
 DNS lookup examples
@@ -3818,52 +3877,52 @@ DNS lookup examples
 #### Node.js
 
 ```node
-import dns from 'node:dns'
+import dns from 'node:dns';
 
 dns.resolveNs('google.com', (err, ns) => {
-  if (err) {
-    console.error(err)
-  }
+   if (err) {
+      console.error(err);
+   }
 
-  console.log(ns)
-})
+   console.log(ns);
+});
 
 dns.resolve4('google.com', (err, ips) => {
-  if (err) {
-    console.error(err)
-  }
+   if (err) {
+      console.error(err);
+   }
 
-  console.log(ips)
-})
+   console.log(ips);
+});
 
 dns.resolveMx('google.com', (err, mx) => {
-  if (err) {
-    console.error(err)
-  }
+   if (err) {
+      console.error(err);
+   }
 
-  console.log(mx)
-})
+   console.log(mx);
+});
 
 dns.resolveTxt('google.com', (err, txt) => {
-  if (err) {
-    console.error(err)
-  }
+   if (err) {
+      console.error(err);
+   }
 
-  console.log(txt)
-})
+   console.log(txt);
+});
 
 setTimeout(() => {
-  dns.setServers(['1.1.1.1'])
-  console.log(dns.getServers())
+   dns.setServers(['1.1.1.1']);
+   console.log(dns.getServers());
 
-  dns.resolveNs('google.com', (err, ns) => {
-    if (err) {
-      console.error(err)
-    }
+   dns.resolveNs('google.com', (err, ns) => {
+      if (err) {
+         console.error(err);
+      }
 
-    console.log(ns)
-  })
-}, 100)
+      console.log(ns);
+   });
+}, 100);
 ```
 
 Output
@@ -3963,17 +4022,18 @@ Output
 **[⬆ back to top](#contents)**
 
 ### crypto
+
 ---
 
 #### Node.js
 
 ```node
-import crypto from 'node:crypto'
-import { Buffer } from 'node:buffer'
+import crypto from 'node:crypto';
+import { Buffer } from 'node:buffer';
 
-const hash = crypto.createHash('sha256').update(Buffer.from('hello')).digest()
+const hash = crypto.createHash('sha256').update(Buffer.from('hello')).digest();
 
-console.log(hash.toString('hex'))
+console.log(hash.toString('hex'));
 ```
 
 Output
@@ -4009,14 +4069,15 @@ Output
 **[⬆ back to top](#contents)**
 
 ### env vars
+
 ---
 
 #### Node.js
 
 ```node
-const key = process.env['API_KEY']
+const key = process.env['API_KEY'];
 
-console.log(key)
+console.log(key);
 ```
 
 Output
@@ -4053,14 +4114,15 @@ foobar
 **[⬆ back to top](#contents)**
 
 ### cli args
+
 ---
 
 #### Node.js
 
 ```node
-const args = process.argv.slice(2)
+const args = process.argv.slice(2);
 
-console.log(args)
+console.log(args);
 ```
 
 Output
@@ -4096,16 +4158,17 @@ $ go run examples/cli_args.go foo bar qux
 **[⬆ back to top](#contents)**
 
 ### cli flags
+
 ---
 
 #### Node.js
 
 ```node
-const yargs = require('yargs')
+const yargs = require('yargs');
 
-const { foo='default value', qux=false } = yargs.argv
-console.log('foo:', foo)
-console.log('qux:', qux)
+const { foo = 'default value', qux = false } = yargs.argv;
+console.log('foo:', foo);
+console.log('qux:', qux);
 ```
 
 Output
@@ -4151,12 +4214,13 @@ qux: true
 **[⬆ back to top](#contents)**
 
 ### stdout
+
 ---
 
 #### Node.js
 
 ```node
-process.stdout.write('hello world\n')
+process.stdout.write('hello world\n');
 ```
 
 Output
@@ -4189,12 +4253,13 @@ hello world
 **[⬆ back to top](#contents)**
 
 ### stderr
+
 ---
 
 #### Node.js
 
 ```node
-process.stderr.write('hello error\n')
+process.stderr.write('hello error\n');
 ```
 
 Output
@@ -4227,21 +4292,22 @@ hello error
 **[⬆ back to top](#contents)**
 
 ### stdin
+
 ---
 
 #### Node.js
 
 ```node
-const stdin = process.openStdin()
+const stdin = process.openStdin();
 
-process.stdout.write('Enter name: ')
+process.stdout.write('Enter name: ');
 
-stdin.addListener('data', text => {
-  const name = text.toString().trim()
-  console.log('Your name is: ' + name)
+stdin.addListener('data', (text) => {
+   const name = text.toString().trim();
+   console.log('Your name is: ' + name);
 
-  stdin.pause()
-})
+   stdin.pause();
+});
 ```
 
 Output
@@ -4287,6 +4353,7 @@ Your name is: bob
 **[⬆ back to top](#contents)**
 
 ### modules
+
 ---
 
 #### Node.js
@@ -4313,10 +4380,10 @@ $ npm publish
 
 ```javascript
 // importing a module
-import moment from 'moment'
+import moment from 'moment';
 
-const now = moment().unix()
-console.log(now)
+const now = moment().unix();
+console.log(now);
 ```
 
 Output
@@ -4328,15 +4395,15 @@ Output
 ```javascript
 // exporting a module
 export function greet(name) {
-  console.log(`hello ${name}`)
+   console.log(`hello ${name}`);
 }
 ```
 
 ```javascript
 // importing exported module
-import { greet } from './greeter.js'
+import { greet } from './greeter.js';
 
-greet('bob')
+greet('bob');
 ```
 
 Output
@@ -4431,19 +4498,20 @@ hello bob
 **[⬆ back to top](#contents)**
 
 ### stack trace
+
 ---
 
 #### Node.js
 
 ```javascript
 function foo() {
-  throw new Error('failed')
+   throw new Error('failed');
 }
 
 try {
-  foo()
-} catch(err) {
-  console.trace(err)
+   foo();
+} catch (err) {
+   console.trace(err);
 }
 ```
 
@@ -4517,6 +4585,7 @@ main.main()
 **[⬆ back to top](#contents)**
 
 ### databases
+
 ---
 
 Example of creating a table, inserting rows, and reading rows from a sqlite3 database
@@ -4524,31 +4593,31 @@ Example of creating a table, inserting rows, and reading rows from a sqlite3 dat
 #### Node.js
 
 ```javascript
-import sqlite3 from 'sqlite3'
-const db = new sqlite3.verbose().Database('./sqlite3.db')
+import sqlite3 from 'sqlite3';
+const db = new sqlite3.verbose().Database('./sqlite3.db');
 
 db.serialize(() => {
-  db.run('CREATE TABLE persons (name TEXT)')
+   db.run('CREATE TABLE persons (name TEXT)');
 
-  const stmt = db.prepare('INSERT INTO persons VALUES (?)')
-  const names = ['alice', 'bob', 'charlie']
-  for (let i = 0; i < names.length; i++) {
-    stmt.run(names[i])
-  }
+   const stmt = db.prepare('INSERT INTO persons VALUES (?)');
+   const names = ['alice', 'bob', 'charlie'];
+   for (let i = 0; i < names.length; i++) {
+      stmt.run(names[i]);
+   }
 
-  stmt.finalize()
+   stmt.finalize();
 
-  db.each('SELECT rowid AS id, name FROM persons', (err, row) => {
-    if (err) {
-      console.error(err)
-      return
-    }
+   db.each('SELECT rowid AS id, name FROM persons', (err, row) => {
+      if (err) {
+         console.error(err);
+         return;
+      }
 
-    console.log(row.id, row.name)
-  })
-})
+      console.log(row.id, row.name);
+   });
+});
 
-db.close()
+db.close();
 ```
 
 Output
@@ -4638,29 +4707,30 @@ Output
 **[⬆ back to top](#contents)**
 
 ### testing
+
 ---
 
 #### Node.js
 
 ```javascript
-import test from 'node:test'
-import assert from 'node:assert/strict'
+import test from 'node:test';
+import assert from 'node:assert/strict';
 
 function sum(a, b) {
-  return a + b
+   return a + b;
 }
 
 test('sum', (t) => {
-  const tt = [
-    { a: 1, b: 1, ret: 2 },
-    { a: 2, b: 3, ret: 5 },
-    { a: 5, b: 5, ret: 10 }
-  ]
+   const tt = [
+      { a: 1, b: 1, ret: 2 },
+      { a: 2, b: 3, ret: 5 },
+      { a: 5, b: 5, ret: 10 },
+   ];
 
-  tt.forEach(item => {
-    assert.strictEqual(sum(item.a, item.b), item.ret)
-  })
-})
+   tt.forEach((item) => {
+      assert.strictEqual(sum(item.a, item.b), item.ret);
+   });
+});
 ```
 
 Output
@@ -4732,44 +4802,46 @@ ok      command-line-arguments  0.008s
 **[⬆ back to top](#contents)**
 
 ### benchmarking
+
 ---
 
 #### Node.js
 
 ```javascript
-import Benchmark from 'benchmark'
+import Benchmark from 'benchmark';
 
-const suite = new Benchmark.Suite()
+const suite = new Benchmark.Suite();
 
 function fibRec(n) {
-  if (n <= 1) {
-    return n
-  }
+   if (n <= 1) {
+      return n;
+   }
 
-  return fibRec(n - 1) + fibRec(n - 2)
+   return fibRec(n - 1) + fibRec(n - 2);
 }
 
 function fibLoop(n) {
-  let f = [0, 1]
-  for (let i = 2; i <= n; i++) {
-    f[i] = f[i - 1] + f[i - 2]
-  }
-  return f[n]
+   let f = [0, 1];
+   for (let i = 2; i <= n; i++) {
+      f[i] = f[i - 1] + f[i - 2];
+   }
+   return f[n];
 }
 
-suite.add('fib#recursion', () => {
-  fibRec(10)
-})
-  .add('fib#loop', () => {
-    fibLoop(10)
-  })
-  .on('complete', () => {
-    console.log(suite[0].toString())
-    console.log(suite[1].toString())
-  })
-  .run({
-    async: true
-  })
+suite
+   .add('fib#recursion', () => {
+      fibRec(10);
+   })
+   .add('fib#loop', () => {
+      fibLoop(10);
+   })
+   .on('complete', () => {
+      console.log(suite[0].toString());
+      console.log(suite[1].toString());
+   })
+   .run({
+      async: true,
+   });
 ```
 
 Output
@@ -4838,6 +4910,7 @@ ok      command-line-arguments  3.502s
 **[⬆ back to top](#contents)**
 
 ### documentation
+
 ---
 
 #### Node.js
@@ -4852,33 +4925,33 @@ ok      command-line-arguments  3.502s
  * const person = new Person('bob')
  */
 export class Person {
-  /**
-   * Create a person.
-   * @param {string} [name] - The person's name.
-   */
-  constructor(name) {
-    this.name = name
-  }
+   /**
+    * Create a person.
+    * @param {string} [name] - The person's name.
+    */
+   constructor(name) {
+      this.name = name;
+   }
 
-  /**
-   * Get the person's name.
-   * @return {string} The person's name
-   * @example
-   * person.getName()
-   */
-  getName() {
-    return this.name
-  }
+   /**
+    * Get the person's name.
+    * @return {string} The person's name
+    * @example
+    * person.getName()
+    */
+   getName() {
+      return this.name;
+   }
 
-  /**
-   * Set the person's name.
-   * @param {string} name - The person's name.
-   * @example
-   * person.setName('bob')
-   */
-  setName(name) {
-    this.name = name
-  }
+   /**
+    * Set the person's name.
+    * @param {string} name - The person's name.
+    * @example
+    * person.setName('bob')
+    */
+   setName(name) {
+      this.name = name;
+   }
 }
 ```
 

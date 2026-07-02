@@ -1,20 +1,20 @@
 /**
  * Ex18: Redis Lua Script — TypeScript Version
- * 
+ *
  * 🧠 So sánh key:
  * - Node.js: Thường sử dụng thư viện `ioredis` để tải và chạy các mã script Lua nguyên tử (atomic).
- * - Go:      Dùng các thư viện driver như `go-redis` để quản lý các Redis script, băm SHA, 
+ * - Go:      Dùng các thư viện driver như `go-redis` để quản lý các Redis script, băm SHA,
  *            và gọi lệnh atomic trên RAM Redis.
- * 
+ *
  * 💡 Sự khác biệt lớn nhất:
- * 1. Với những bài toán concurrency cực lớn (như giật bao lì xì, flash-sale), các lệnh khóa DB truyền thống 
+ * 1. Với những bài toán concurrency cực lớn (như giật bao lì xì, flash-sale), các lệnh khóa DB truyền thống
  *    như `SELECT FOR UPDATE` gây nghẽn cổ chai DB cực kỳ nghiêm trọng (Lock Contention).
- * 2. Giải pháp hoàn hảo là dùng Redis Lua Script chạy đơn luồng cực nhanh trên RAM, đảm bảo 
+ * 2. Giải pháp hoàn hảo là dùng Redis Lua Script chạy đơn luồng cực nhanh trên RAM, đảm bảo
  *    tính nguyên tử (atomic), sau đó đưa kết quả "giữ chỗ" đó cho một Async Worker lưu bền vững (durability) xuống PostgreSQL.
  */
 
-import Redis from 'ioredis';
 import express, { Request, Response } from 'express';
+import Redis from 'ioredis';
 
 const app = express();
 app.use(express.json());
@@ -36,45 +36,57 @@ redis.call('HSET', reservedKey, userID, amount)
 return {amount, 'OK'}
 `;
 
+// 🧠 ĐỊNH NGHĨA LỆNH CUSTOM TRONG IOREDIS (ioredis defineCommand under the hood):
+// - Trong Node.js, `ioredis` cung cấp hàm cực kỳ tiện lợi `redis.defineCommand('attemptClaim', ...)`.
+// - Dưới nắp capo, `ioredis` tự động băm SHA1 của chuỗi Lua Script này ngay khi ứng dụng khởi động.
+// - Nó gắn thêm hàm `.attemptClaim` trực tiếp vào đối tượng `redis` prototype.
+// - Khi ta gọi `await redis.attemptClaim(...)`, ioredis sẽ tự động gửi lệnh `EVALSHA` với mã SHA1 đã tính trước.
+// - Nếu Redis báo lỗi `NOSCRIPT`, ioredis tự động gửi lại toàn bộ mã nguồn của script lên bằng `EVAL`.
+// - Cơ chế này hoàn toàn đồng nhất với cơ chế tối ưu hóa truyền tải script của go-redis trong Golang!
 redis.defineCommand('attemptClaim', {
-  numberOfKeys: 2,
-  lua: attemptClaimLua,
+   numberOfKeys: 2,
+   lua: attemptClaimLua,
 });
 
 app.post('/red-envelope/create', async (req: Request, res: Response) => {
-  const { id, amounts } = req.body;
-  const poolKey = `red_envelope:${id}:pool`;
+   const { id, amounts } = req.body;
+   const poolKey = `red_envelope:${id}:pool`;
 
-  await redis.del(poolKey);
-  await redis.del(`red_envelope:${id}:reserved`);
+   await redis.del(poolKey);
+   await redis.del(`red_envelope:${id}:reserved`);
 
-  await redis.rpush(poolKey, ...amounts);
-  res.status(201).json({ success: true, message: 'Envelope created' });
+   await redis.rpush(poolKey, ...amounts);
+   res.status(201).json({ success: true, message: 'Envelope created' });
 });
 
 app.post('/red-envelope/:id/claim', async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const { user_id } = req.body;
+   const id = req.params.id;
+   const { user_id } = req.body;
 
-  const poolKey = `red_envelope:${id}:pool`;
-  const reservedKey = `red_envelope:${id}:reserved`;
+   const poolKey = `red_envelope:${id}:pool`;
+   const reservedKey = `red_envelope:${id}:reserved`;
 
-  try {
-    const [amount, status] = await redis.attemptClaim(poolKey, reservedKey, user_id);
-    res.json({ success: true, amount: parseInt(amount, 10), status });
-  } catch (err: any) {
-    res.status(500).json({ success: false, error: err.message });
-  }
+   try {
+      // Gọi hàm custom đã được ioredis định nghĩa và tối ưu hóa EVALSHA dưới nắp capo
+      const [amount, status] = await redis.attemptClaim(
+         poolKey,
+         reservedKey,
+         user_id,
+      );
+      res.json({ success: true, amount: parseInt(amount, 10), status });
+   } catch (err: any) {
+      res.status(500).json({ success: false, error: err.message });
+   }
 });
 
 app.get('/red-envelope/:id/status', async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const reservedKey = `red_envelope:${id}:reserved`;
+   const id = req.params.id;
+   const reservedKey = `red_envelope:${id}:reserved`;
 
-  const claims = await redis.hgetall(reservedKey);
-  res.json({ success: true, data: claims });
+   const claims = await redis.hgetall(reservedKey);
+   res.json({ success: true, data: claims });
 });
 
 app.listen(8080, () => {
-  console.log('Redis Lucky Money Express server running on port 8080');
+   console.log('Redis Lucky Money Express server running on port 8080');
 });

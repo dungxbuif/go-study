@@ -6,6 +6,15 @@
 
 ---
 
+## 🗺️ Bản Đồ Wiki & Hệ Sinh Thái Học Tập (Wiki Navigation Hub)
+
+| Trang Chủ | So Sánh Core | So Sánh Framework | Kỹ Thuật Nâng Cao | Lộ Trình Thực Hành | Phỏng Vấn & Live Coding |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| 🏠 **[Trang Chủ (Wiki Root)](../README.md)** | 📊 **[Go vs Node.js Core](../GO_NODEJS.md)** | 🚀 **[Echo vs Gin vs NestJS vs Express](../framework-comparison/README.md)** | 🛠️ **[14 Kỹ Thuật Go Luyện Tập](../go-techniques/README.md)** | 🎯 **[24 Bài Tập Tự Luyện](./README.md)** | 💼 **[Đề Bài Thực Chiến](./interview-live-coding.md)** |
+
+---
+
+
 ## 📐 Cấu Trúc Thư Mục
 
 ```
@@ -35,35 +44,43 @@ go-study/exercises/
     ├── ex17-semaphore-binary-retry/
     ├── ex18-redis-lua-concurrency/
     ├── ex19-websocket-room-hub/
-    └── ex20-batch-pipeline-kafka/
+    ├── ex20-batch-pipeline-kafka/
+    ├── ex21-circuit-breaker-fallback/
+    ├── ex22-distributed-tracing-context/
+    ├── ex23-sync-pool-zero-alloc/
+    └── ex24-grpc-interceptor-auth/
 ```
 
 ---
 
-## 📊 Checklist Tiến Độ
+## 📊 Bảng Phân Phối Giải Pháp & Trạng Thái (Solutions & Progress Hub)
 
-| # | Bài tập | Kỹ năng | Status |
-|:--|:--------|:--------|:-------|
-| 01 | Struct & Methods | Pointer/Value receiver | ☐ |
-| 02 | Interfaces | Implicit satisfaction, DI | ☐ |
-| 03 | Error Handling | Custom errors, wrapping | ☐ |
-| 04 | Pointers & Generics | `*T`, `[T any]` | ☐ |
-| 05 | Goroutine + WaitGroup | `sync.WaitGroup`, `Mutex` | ☐ |
-| 06 | Channels Pipeline | fan-out, fan-in, `close()` | ☐ |
-| 07 | Worker Pool | Buffered channel job queue | ☐ |
-| 08 | Context Timeout | `WithTimeout`, `WithCancel` | ☐ |
-| 09 | Hello Gin | Routes, groups, params | ☐ |
-| 10 | CRUD In-Memory | JSON binding, `sync.RWMutex` | ☐ |
-| 11 | Middleware Chain | Logger, Auth, Onion model | ☐ |
-| 12 | Validation & Binding | Struct tags, custom validator | ☐ |
-| 13 | Clean Architecture | Interface layers, manual DI | ☐ |
-| 14 | Auth JWT + ZK concept | JWT middleware, c.Set/Get | ☐ |
-| 15 | Database + SQL | UPSERT, Preload, pagination | ☐ |
-| 16 | Testing & Mocking | Table-driven, `httptest` | ☐ |
-| 17 | Semaphore + Binary Retry | Channel semaphore, đệ quy | ☐ |
-| 18 | Redis Lua Concurrency | Atomic claim, LPOP/HSET | ☐ |
-| 19 | WebSocket Room Hub | Gorilla WS, Hub pattern | ☐ |
-| 20 | Batch Pipeline + Event | Batcher, CTE SQL, Kafka | ☐ |
+| # | Bài Tập | Kỹ Năng Cốt Lõi | Lời Giải mẫu (Go) | Lời Giải mẫu (TS) | Trạng Thái |
+|:--|:--------|:----------------|:-----------------:|:-----------------:|:----------:|
+| 01 | [Struct & Methods](#ex01-struct-methods--user-service) | Pointer/Value receiver | 🔵 [Go Code](./level-1-foundations/ex01-struct-methods/struct_method.go) | 🟡 [TS Code](./level-1-foundations/ex01-struct-methods/ex01-struct-methods.ts) | ☐ |
+| 02 | [Interfaces](#ex02-interfaces--payment-gateway) | Implicit satisfaction, DI | 🔵 [Go Code](./level-1-foundations/ex02-interfaces/interfaces.go) | 🟡 [TS Code](./level-1-foundations/ex02-interfaces/ex02-interfaces.ts) | ☐ |
+| 03 | [Error Handling](#ex03-error-handling--config-parser) | Custom errors, wrapping | 🔵 [Go Code](./level-1-foundations/ex03-error-handling/error_handling.go) | 🟡 [TS Code](./level-1-foundations/ex03-error-handling/ex03-error-handling.ts) | ☐ |
+| 04 | [Pointers & Generics](#ex04-pointers-generics--linkedlist) | `*T`, `[T any]` | 🔵 [Go Code](./level-1-foundations/ex04-pointers-generics/pointers_generics.go) | 🟡 [TS Code](./level-1-foundations/ex04-pointers-generics/ex04-pointers-generics.ts) | ☐ |
+| 05 | [Goroutine + WaitGroup](#ex05-goroutine-waitgroup--parallel-url-checker) | `sync.WaitGroup`, `Mutex` | 🔵 [Go Code](./level-2-concurrency/ex05-goroutine-waitgroup/concurrency.go) | 🟡 [TS Code](./level-2-concurrency/ex05-goroutine-waitgroup/ex05-goroutine-waitgroup.ts) | ☐ |
+| 06 | [Channels Pipeline](#ex06-channels--pipeline--data-processing-pipeline) | fan-out, fan-in, `close()` | 🔵 [Go Code](./level-2-concurrency/ex06-channels-pipeline/pipeline.go) | 🟡 [TS Code](./level-2-concurrency/ex06-channels-pipeline/ex06-channels-pipeline.ts) | ☐ |
+| 07 | [Worker Pool](#ex07-worker-pool--image-resizer-simulator) | Buffered channel job queue | 🔵 [Go Code](./level-2-concurrency/ex07-worker-pool/worker_pool.go) | 🟡 [TS Code](./level-2-concurrency/ex07-worker-pool/ex07-worker-pool.ts) | ☐ |
+| 08 | [Context Timeout](#ex08-context--timeout--cancellation) | `WithTimeout`, `WithCancel` | 🔵 [Go Code](./level-2-concurrency/ex08-context-timeout/context_timeout.go) | 🟡 [TS Code](./level-2-concurrency/ex08-context-timeout/ex08-context-timeout.ts) | ☐ |
+| 09 | [Hello Gin](#ex09-hello-gin--first-gin-server) | Routes, groups, params | 🔵 [Go Code](./level-3-gin-basics/ex09-hello-gin/hello_gin.go) | 🟡 [TS Code](./level-3-gin-basics/ex09-hello-gin/ex09-hello-gin.ts) | ☐ |
+| 10 | [CRUD In-Memory](#ex10-crud-in-memory--todo-api) | JSON binding, `sync.RWMutex` | 🔵 [Go Code](./level-3-gin-basics/ex10-crud-inmemory/crud_inmemory.go) | 🟡 [TS Code](./level-3-gin-basics/ex10-crud-inmemory/ex10-crud-inmemory.ts) | ☐ |
+| 11 | [Middleware Chain](#ex11-middleware-chain--logger-auth-cors) | Logger, Auth, Onion model | 🔵 [Go Code](./level-3-gin-basics/ex11-middleware-chain/middleware.go) | 🟡 [TS Code](./level-3-gin-basics/ex11-middleware-chain/ex11-middleware-chain.ts) | ☐ |
+| 12 | [Validation & Binding](#ex12-validation--binding--user-registration) | Struct tags, custom validator | 🔵 [Go Code](./level-3-gin-basics/ex12-validation-binding/validation.go) | 🟡 [TS Code](./level-3-gin-basics/ex12-validation-binding/ex12-validation-binding.ts) | ☐ |
+| 13 | [Clean Architecture](#ex13-clean-architecture--refactor-todo-api) | Interface layers, manual DI | 🔵 [Go Code](./level-4-gin-production/ex13-clean-architecture/cmd/main.go) | 🟡 [TS Code](./level-4-gin-production/ex13-clean-architecture/ex13-clean-architecture.ts) | ☐ |
+| 14 | [Auth JWT + ZK Concept](#ex14-auth-jwt--zk-concept--login--protected-routes) | JWT middleware, c.Set/Get | 🔵 [Go Code](./level-4-gin-production/ex14-auth-jwt-zk/auth.go) | 🟡 [TS Code](./level-4-gin-production/ex14-auth-jwt-zk/ex14-auth-jwt-zk.ts) | ☐ |
+| 15 | [Database + SQL](#ex15-database--sql--blog-api) | UPSERT, Preload, pagination | 🔵 [Go Code](./level-4-gin-production/ex15-database-gorm/db.go) | 🟡 [TS Code](./level-4-gin-production/ex15-database-gorm/ex15-database-gorm.ts) | ☐ |
+| 16 | [Testing & Mocking](#ex16-testing--mocking--test-todo-usecase) | Table-driven, `httptest` | 🔵 [Go Code](./level-4-gin-production/ex16-testing-mocking/testing_mocking.go) | 🟡 [TS Code](./level-4-gin-production/ex16-testing-mocking/ex16-testing-mocking.ts) | ☐ |
+| 17 | [Semaphore + Binary Retry](#ex17-channel-semaphore--binary-split-retry) | Channel semaphore, đệ quy | 🔵 [Go Code](./level-5-senior/ex17-semaphore-binary-retry/semaphore_retry.go) | 🟡 [TS Code](./level-5-senior/ex17-semaphore-binary-retry/ex17-semaphore-binary-retry.ts) | ☐ |
+| 18 | [Redis Lua Concurrency](#ex18-redis-lua-script--lucky-money-concurrency) | Atomic claim, LPOP/HSET | 🔵 [Go Code](./level-5-senior/ex18-redis-lua-concurrency/redis_lua.go) | 🟡 [TS Code](./level-5-senior/ex18-redis-lua-concurrency/ex18-redis-lua-concurrency.ts) | ☐ |
+| 19 | [WebSocket Room Hub](#ex19-websocket-room--hub-pattern--real-time-chat) | Gorilla WS, Hub pattern | 🔵 [Go Code](./level-5-senior/ex19-websocket-room-hub/websocket_hub.go) | 🟡 [TS Code](./level-5-senior/ex19-websocket-room-hub/ex19-websocket-room-hub.ts) | ☐ |
+| 20 | [Batch Pipeline + Event](#ex20-batch-pipeline--event-streaming) | Batcher, CTE SQL, Kafka | 🔵 [Go Code](./level-5-senior/ex20-batch-pipeline-kafka/batch_pipeline.go) | 🟡 [TS Code](./level-5-senior/ex20-batch-pipeline-kafka/ex20-batch-pipeline-kafka.ts) | ☐ |
+| 21 | [Circuit Breaker](#ex21-circuit-breaker--fallback-pattern) | Resiliency, Fallback | 🔵 [Go Code](./level-5-senior/ex21-circuit-breaker-fallback/circuit_breaker.go) | 🟡 [TS Code](./level-5-senior/ex21-circuit-breaker-fallback/ex21-circuit-breaker.ts) | ☐ |
+| 22 | [Distributed Tracing](#ex22-distributed-tracing--correlation-id) | Context propagation, Middleware | 🔵 [Go Code](./level-5-senior/ex22-distributed-tracing-context/tracing.go) | 🟡 [TS Code](./level-5-senior/ex22-distributed-tracing-context/ex22-tracing.ts) | ☐ |
+| 23 | [Sync.Pool Zero Alloc](#ex23-syncpool--zero-allocation) | Memory optimization, GC | 🔵 [Go Code](./level-5-senior/ex23-sync-pool-zero-alloc/pool.go) | 🟡 [TS Code](./level-5-senior/ex23-sync-pool-zero-alloc/ex23-pool.ts) | ☐ |
+| 24 | [gRPC Interceptor Auth](#ex24-grpc--protobuf--interceptor) | gRPC, Protobuf, Middleware | 🔵 [Go Code](./level-5-senior/ex24-grpc-interceptor-auth/grpc_server.go) | 🟡 [TS Code](./level-5-senior/ex24-grpc-interceptor-auth/ex24-grpc.ts) | ☐ |
 
 ---
 
@@ -774,6 +791,91 @@ ex13-clean-architecture/
 
 ---
 
+### Ex21: Circuit Breaker & Fallback Pattern
+
+**Mục tiêu phỏng vấn**: Trả lời câu hỏi _"Làm sao để hệ thống không sụp đổ dây chuyền (Cascading Failure) khi một third-party API bị chậm hoặc chết?"_
+
+**Yêu cầu:**
+1. **Triển khai Circuit Breaker**:
+   - Trạng thái: **Closed** (bình thường), **Open** (ngắt kết nối), **Half-Open** (thử nghiệm).
+   - Nếu tỉ lệ lỗi vượt 50% trong 10 requests gần nhất -> chuyển sang **Open**.
+   - Sau 5 giây ở trạng thái **Open**, chuyển sang **Half-Open** để thử lại 1 request.
+2. **Fallback Mechanism**:
+   - Nếu breaker ở trạng thái **Open**, API trả về dữ liệu cache cũ (Stale Data) thay vì báo lỗi.
+3. **Kịch bản Test**:
+   - Third-party API mô phỏng lúc nhanh lúc chậm (timeout).
+   - Gọi 100 requests đồng thời, quan sát Circuit Breaker ngắt và khôi phục.
+
+**🎯 Kỹ năng rèn:**
+- Kiến trúc Resiliency: Circuit Breaker Pattern.
+- Custom state machine với Mutex.
+- Graceful degradation (hạ cấp dịch vụ an toàn).
+
+---
+
+### Ex22: Distributed Tracing & Correlation ID
+
+**Mục tiêu phỏng vấn**: Trả lời câu hỏi _"Trong hệ thống Microservices, làm sao bạn trace (theo vết) được một request đi qua 5 services khác nhau?"_
+
+**Yêu cầu:**
+1. **Tracing Middleware**:
+   - Intercept mọi request đến, kiểm tra header `X-Correlation-ID`.
+   - Nếu chưa có, tự tạo một UUID mới. Đưa ID này vào `context.Context`.
+2. **Context Propagation**:
+   - Viết một HTTP Client wrapper luôn tự động đính kèm `X-Correlation-ID` từ `context.Context` vào outgoing requests.
+3. **Structured Logging**:
+   - Tạo logger tùy chỉnh luôn in ra `CorrelationID` ở mọi dòng log.
+4. **Kịch bản Test**:
+   - Dựng Service A gọi Service B. Gọi API Service A và kiểm tra log của cả hai service có chung một ID.
+
+**🎯 Kỹ năng rèn:**
+- `context.WithValue` chuẩn mực.
+- Header propagation giữa các ranh giới service.
+- Quan sát hệ thống (Observability).
+
+---
+
+### Ex23: `sync.Pool` & Zero Allocation
+
+**Mục tiêu phỏng vấn**: Trả lời câu hỏi _"Làm sao tối ưu API nhận 10,000 requests/s xử lý payload JSON lớn để không bị spike (tăng đột biến) Garbage Collection?"_
+
+**Yêu cầu:**
+1. **Vấn đề**:
+   - Một API nhận mảng JSON 1MB, xử lý và tạo ra hàng nghìn struct tạm thời mỗi request.
+2. **Giải pháp**:
+   - Khởi tạo `sync.Pool` để tái sử dụng một slice `[]byte` buffer kích thước lớn.
+   - Khi request đến, `Get()` buffer từ pool.
+   - Xử lý xong, `Reset()` buffer và `Put()` lại vào pool.
+3. **Benchmark**:
+   - Viết file `_test.go` dùng `go test -bench` và `go test -benchmem` để so sánh cấp phát RAM giữa hàm dùng Pool và không dùng Pool.
+
+**🎯 Kỹ năng rèn:**
+- `sync.Pool` để giảm tải cấp phát bộ nhớ động (heap allocation).
+- Benchmark `allocs/op` và `B/op`.
+- Zero-copy deserialization trick.
+
+---
+
+### Ex24: gRPC + Protobuf + Interceptor
+
+**Mục tiêu phỏng vấn**: Trả lời câu hỏi _"Bạn đánh giá thế nào về REST so với gRPC? Hãy ví dụ cách implement Auth trong gRPC."_
+
+**Yêu cầu:**
+1. **Định nghĩa Protobuf**:
+   - Tạo file `user.proto` với RPC `GetUser` và `CreateUser`. Generate ra Go code.
+2. **Implement Server**:
+   - Xây dựng gRPC Server implement interface đã sinh ra.
+3. **Auth Interceptor**:
+   - Tương đương middleware của Gin, viết Unary Interceptor để kiểm tra Token ở gRPC metadata (headers).
+4. **Kịch bản Test**:
+   - Viết một gRPC Client nhỏ gửi request kèm/không kèm metadata để test.
+
+**🎯 Kỹ năng rèn:**
+- Protocol Buffers (cú pháp, biên dịch).
+- Setup gRPC Server và Client.
+- gRPC Interceptors (Unary/Stream).
+- Thao tác với gRPC `metadata`.
+
 ## ⚡ Hướng Dẫn Thực Hành
 
 ### Thời gian đề xuất
@@ -783,8 +885,8 @@ ex13-clean-architecture/
 | Level 2 | Ex05-08 | 2-3 giờ | ~10 giờ |
 | Level 3 | Ex09-12 | 2-3 giờ | ~10 giờ |
 | Level 4 | Ex13-16 | 3-4 giờ | ~14 giờ |
-| Level 5 | Ex17-20 | 4-6 giờ | ~20 giờ |
-| **Tổng** | **20 bài** | | **~60 giờ** |
+| Level 5 | Ex17-24 | 4-6 giờ | ~40 giờ |
+| **Tổng** | **24 bài** | | **~80 giờ** |
 
 ### Quy tắc vàng
 1. **Làm tuần tự** — mỗi bài xây trên kiến thức bài trước

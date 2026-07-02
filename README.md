@@ -1,68 +1,87 @@
-# Go (Golang) Learning Journey 🚀
+# 🌐 Go (Golang) Central Wiki & Learning Hub 🚀
 
-Tự học Go
+Chào mừng bạn đến với Wiki học tập và nghiên cứu Go (Golang) dành cho các lập trình viên (đặc biệt phù hợp cho những ai có nền tảng từ Node.js/TypeScript chuyển sang). Đây là một kho tri thức toàn diện, liên kết chặt chẽ từ cú pháp cơ bản đến các cơ chế xử lý song song ở cấp độ sâu dưới mui xe (Under the Hood), cùng với thực hành và so sánh các framework phổ biến.
 
-## 📑 Mục lục
+---
 
-- [Go (Golang) Learning Journey 🚀](#go-golang-learning-journey-)
-  - [📑 Mục lục](#-mục-lục)
-  - [🏁 1. Giới thiệu về Go](#-1-giới-thiệu-về-go)
-    - [Đặc điểm cốt lõi:](#đặc-điểm-cốt-lõi)
-  - [🛠 2. Tooling \& Workspace](#-2-tooling--workspace)
-    - [Lệnh cơ bản](#lệnh-cơ-bản)
-      - [Quy tắc \& Cú pháp quan trọng](#quy-tắc--cú-pháp-quan-trọng)
-    - [Cấu trúc Project khuyến nghị](#cấu-trúc-project-khuyến-nghị)
-  - [📜 3. Cú pháp cơ bản (Basic Syntax)](#-3-cú-pháp-cơ-bản-basic-syntax)
-    - [3. Khai báo Biến (Variables)](#3-khai-báo-biến-variables)
-      - [Các cách khai báo chính](#các-cách-khai-báo-chính)
-      - [Khai báo không khởi tạo (Zero Values)](#khai-báo-không-khởi-tạo-zero-values)
-      - [So sánh `var` và `:=`](#so-sánh-var-và-)
-      - [Khai báo nhiều biến](#khai-báo-nhiều-biến)
-      - [Quy tắc đặt tên biến (Naming Rules)](#quy-tắc-đặt-tên-biến-naming-rules)
-      - [Hằng số (Constants) \& Iota](#hằng-số-constants--iota)
-      - [Hàm Xuất dữ liệu (Output Functions)](#hàm-xuất-dữ-liệu-output-functions)
-      - [Hệ thống Toán tử (Operators)](#hệ-thống-toán-tử-operators)
-    - [Kiểu dữ liệu cơ bản](#kiểu-dữ-liệu-cơ-bản)
-  - [⚙️ 4. Control Flow](#️-4-control-flow)
-    - [If / Else](#if--else)
-    - [Loops (Chỉ có `for`)](#loops-chỉ-có-for)
-    - [Switch](#switch)
-  - [📦 5. Data Structures](#-5-data-structures)
-    - [Arrays \& Slices](#arrays--slices)
-      - [🧠 Cấu trúc chuyên sâu: Slice Header](#-cấu-trúc-chuyên-sâu-slice-header)
-    - [🚀 Phân tích chuyên sâu: Cơ chế Append \& Reallocation](#-phân-tích-chuyên-sâu-cơ-chế-append--reallocation)
-      - [1. Cơ chế tính toán "New Capacity" (Growth Algorithm)](#1-cơ-chế-tính-toán-new-capacity-growth-algorithm)
-      - [2. Quy trình "Allocation \& Copy" dưới nắp capo](#2-quy-trình-allocation--copy-dưới-nắp-capo)
-      - [3. Tại sao `make([]T, len, cap)` lại tối ưu vượt trội?](#3-tại-sao-maket-len-cap-lại-tối-ưu-vượt-trội)
-      - [4. Phân tích hiệu năng (Benchmark thực tế)](#4-phân-tích-hiệu-năng-benchmark-thực-tế)
-      - [5. Lời khuyên cho Senior](#5-lời-khuyên-cho-senior)
-    - [String](#string)
-    - [UTF-8, Rune và Byte](#utf-8-rune-và-byte)
-    - [Maps (Key-Value)](#maps-key-value)
-    - [Structs (Thay thế Class)](#structs-thay-thế-class)
-    - [Methods (Hàm dành riêng cho Struct)](#methods-hàm-dành-riêng-cho-struct)
-  - [🧬 6. Concurrency (Goroutines \& Channels)](#-6-concurrency-goroutines--channels)
-    - [⚔️ So sánh Thread (Hệ điều hành) vs Goroutines (Go Runtime)](#️-so-sánh-thread-hệ-điều-hành-vs-goroutines-go-runtime)
-    - [Cách sử dụng cơ bản](#cách-sử-dụng-cơ-bản)
-  - [🛡️ 7. Context (Quản lý vòng đời và Cancellation)](#️-7-context-quản-lý-vòng-đời-và-cancellation)
-  - [8. Các từ khóa đặc biệt (`defer`, `panic`, `recover`)](#8-các-từ-khóa-đặc-biệt-defer-panic-recover)
-    - [Defer](#defer)
-    - [Panic \& Recover](#panic--recover)
-  - [⚠️ 9. Xử lý lỗi (Error Handling)](#️-9-xử-lý-lỗi-error-handling)
-  - [🔗 10. So sánh Go với Node.js (Cho Developer)](#-10-so-sánh-go-với-nodejs-cho-developer)
-- [Xử lý đồng thời trong Golang](#xử-lý-đồng-thời-trong-golang)
-  - [❓ 11. Q\&A Quan trọng](#-11-qa-quan-trọng)
-    - [1. Số thực (Float) được lưu thế nào?](#1-số-thực-float-được-lưu-thế-nào)
-    - [2. Interface trong Go có gì đặc biệt?](#2-interface-trong-go-có-gì-đặc-biệt)
-    - [PHẦN 1: CÁC KHÁI NIỆM \& CÚ PHÁP CỐT LÕI (Core Syntax)](#phần-1-các-khái-niệm--cú-pháp-cốt-lõi-core-syntax)
-      - [1. Pointer vs. Value (Con trỏ \& Tham trị)](#1-pointer-vs-value-con-trỏ--tham-trị)
-      - [2. Slices \& Maps (Cơ chế hoạt động bên dưới)](#2-slices--maps-cơ-chế-hoạt-động-bên-dưới)
-      - [3. Concurrency (Lập trình song song): Goroutines \& Channels](#3-concurrency-lập-trình-song-song-goroutines--channels)
-      - [4. Quản lý đồng bộ bộ nhớ (Mutex \& Atomics)](#4-quản-lý-đồng-bộ-bộ-nhớ-mutex--atomics)
-      - [5. Context (`context.Context`)](#5-context-contextcontext)
-      - [6. Quản lý lỗi (Error Handling)](#6-quản-lý-lỗi-error-handling)
-    - [PHẦN 2: CÔNG NGHỆ BỔ TRỢ CẦN BIẾT (Tech Stack)](#phần-2-công-nghệ-bổ-trợ-cần-biết-tech-stack)
-    - [LỘ TRÌNH THỰC HÀNH TỰ LUYỆN (Practice Roadmap)](#lộ-trình-thực-hành-tự-luyện-practice-roadmap)
+## 🗺️ Bản Đồ Wiki & Hệ Sinh Thái Học Tập (Wiki Navigation Hub)
+
+|                  Trang Chủ                  |                So Sánh Core                 |                              So Sánh Framework                              |                      Kỹ Thuật Nâng Cao                       |                 Lộ Trình Thực Hành                  |
+| :-----------------------------------------: | :-----------------------------------------: | :-------------------------------------------------------------------------: | :----------------------------------------------------------: | :-------------------------------------------------: |
+| 🏠 **[Trang Chủ (Wiki Root)](./README.md)** | 📊 **[Go vs Node.js Core](./GO_NODEJS.md)** | 🚀 **[Echo vs Gin vs NestJS vs Express](./framework-comparison/README.md)** | 🛠️ **[14 Kỹ Thuật Go Luyện Tập](./go-techniques/README.md)** | 🎯 **[20 Bài Tập Tự Luyện](./exercises/README.md)** |
+
+---
+
+## 📂 Tổng Quan Cấu Trúc Hệ Thống Tài Liệu (Directory Map)
+
+Hệ thống tài liệu này được cấu trúc hóa để bạn dễ dàng tra cứu, học tập và tái tạo (replicate) mã nguồn:
+
+1. 🏠 **[Tài liệu Cú pháp & Concurrency Cơ bản (Trang Chủ)](./README.md)**: Chứa toàn bộ ghi chú học tập về kiểu dữ liệu, vòng lặp, struct, interface, goroutines, channels, context, `defer`/`panic`/`recover` và cơ chế **GMP Scheduler (GMP Model)** của Go.
+2. 📊 **[Phân Tích Chuyên Sâu Go vs Node.js Core](./GO_NODEJS.md)**: Đi sâu so sánh JIT vs AOT compilation, luồng Event Loop vs Goroutines, bộ dọn rác GC tối ưu độ trễ thấp vs thông lượng cao, cùng kích thước đóng gói Docker.
+3. 🚀 **[So Sánh Toàn Diện Framework HTTP](./framework-comparison/README.md)**: So sánh chi tiết **Echo vs Gin vs Express.js vs NestJS** về:
+   - _Vòng đời Request (Request Lifecycle)_, _Kiến trúc & Cấu trúc dự án_, _DI / IoC_, _Validation & Transformation_, _Interceptors_, _Microservices & Sockets_ (NATS, gRPC, WebSockets).
+   - Đính kèm mã nguồn hoàn chỉnh có khả năng chạy thử ngay lập tức (cho phép sao chép & nhân bản dễ dàng).
+4. 🎯 **[Lộ Trình 20 Bài Tập Thực Hành Tự Luyện](./exercises/README.md)**: Lộ trình 5 cấp độ (từ Foundations đến Senior Concurrency, Redis Lua script, Gorilla WebSocket room hub, Batch processing pipeline). Mỗi bài tập đều đi kèm file giải mẫu bằng cả **Go** và **TypeScript/Node.js** giúp bạn so sánh trực quan nhất!
+
+---
+
+## 💻 Hướng Dẫn Chạy & Nhân Bản Mã Nguồn (How to Replicate & Run)
+
+Tất cả các ví dụ code trong Wiki này đều được thiết kế hoàn chỉnh và cho phép chạy thử ngay lập tức.
+
+### A. Chạy thử các Framework HTTP (Echo, Gin, Express, NestJS)
+
+Mã nguồn đầy đủ của các framework nằm trong thư mục [framework-comparison/](./framework-comparison/):
+
+- **Echo**:
+   ```bash
+   cd framework-comparison/echo-app && go run main.go
+   ```
+   _(Server lắng nghe trên cổng `8080`)_
+- **Gin**:
+   ```bash
+   cd framework-comparison/gin-app && go run main.go
+   ```
+   _(Server lắng nghe trên cổng `8081`)_
+- **Express.js (Node.js)**:
+   ```bash
+   cd framework-comparison/express-app && npm install && node app.js
+   ```
+   _(Server lắng nghe trên cổng `8082`)_
+- **NestJS (TypeScript)**:
+   ```bash
+   cd framework-comparison/nest-app && npm install && npm run start
+   ```
+   _(Server lắng nghe trên cổng `8083`)_
+
+### B. Chạy thử 20 Bài Tập Tự Luyện
+
+Tất cả các bài tập nằm trong thư mục [exercises/](./exercises/) theo từng phân mục cụ thể. Ví dụ để chạy bài tập 01 (Struct & Methods):
+
+- **Go**:
+   ```bash
+   cd exercises/level-1-foundations/ex01-struct-methods && go run struct_method.go
+   ```
+- **TypeScript**:
+   ```bash
+   cd exercises/level-1-foundations/ex01-struct-methods && npx ts-node ex01-struct-methods.ts
+   ```
+
+---
+
+## 📑 Mục lục Chi Tiết Trang Chủ
+
+- [🏁 1. Giới thiệu về Go](#-1-giới-thiệu-về-go)
+- [🛠 2. Tooling \& Workspace](#-2-tooling--workspace)
+- [📜 3. Cú pháp cơ bản (Basic Syntax)](#-3-cú-pháp-cơ-bản-basic-syntax)
+- [⚙️ 4. Control Flow](#️-4-control-flow)
+- [📦 5. Data Structures](#-5-data-structures)
+- [🧬 6. Concurrency (Goroutines \& Channels)](#-6-concurrency-goroutines--channels)
+- [🛡️ 7. Context (Quản lý vòng đời và Cancellation)](#-7-context-quản-lý-vòng-đời-và-cancellation)
+- [8. Các từ khóa đặc biệt (`defer`, `panic`, `recover`)](#8-các-từ-khóa-đặc-biệt-defer-panic-recover)
+- [⚠️ 9. Xử lý lỗi (Error Handling)](#-9-xử-lý-lỗi-error-handling)
+- [🔗 10. So sánh Go với Node.js (Cho Developer)](#-10-so-sánh-go-với-nodejs-cho-developer)
+- [❓ 11. Q\&A Quan trọng](#-11-qa-quan-trọng)
 
 ---
 
@@ -538,22 +557,22 @@ func (p Person) Describe() {
                   └──────┬───────┘
 ```
 
-*   **G (Goroutine):** Đại diện cho một luồng thực thi phía User-space. Nó chứa stack riêng (khởi đầu chỉ 2KB), Program Counter và các thông tin trạng thái để lên lịch.
-*   **M (Machine / OS Thread):** Thực thể vật lý duy nhất thực thi mã máy trên CPU, do Hệ điều hành quản lý.
-*   **P (Processor / Bộ điều phối logic):** Đại diện cho tài nguyên cần thiết để chạy mã Go. Số lượng `P` cố định bằng số nhân CPU vật lý (`GOMAXPROCS`). Mỗi `P` quản lý một **Local Run Queue** chứa các Goroutine đang chờ được chạy.
+- **G (Goroutine):** Đại diện cho một luồng thực thi phía User-space. Nó chứa stack riêng (khởi đầu chỉ 2KB), Program Counter và các thông tin trạng thái để lên lịch.
+- **M (Machine / OS Thread):** Thực thể vật lý duy nhất thực thi mã máy trên CPU, do Hệ điều hành quản lý.
+- **P (Processor / Bộ điều phối logic):** Đại diện cho tài nguyên cần thiết để chạy mã Go. Số lượng `P` cố định bằng số nhân CPU vật lý (`GOMAXPROCS`). Mỗi `P` quản lý một **Local Run Queue** chứa các Goroutine đang chờ được chạy.
 
 #### 3 Thuật toán cốt lõi làm nên sức mạnh của GMP:
 
-1.  **Work Stealing (Trộm việc):**
-    Khi một Thread `M` chạy hết tác vụ trong hàng đợi cục bộ của `P` đi kèm, thay vì đi ngủ (gây tốn chi phí Context Switch của OS), nó sẽ chủ động sang các `P` khác để **"trộm" lại 50% số lượng Goroutine** đang xếp hàng để xử lý phụ.
-2.  **Hand-Off (Chuyển giao) khi gặp Blocking Syscall:**
-    Khi một Goroutine `G` thực hiện gọi một System Call đồng bộ (như đọc file từ đĩa cứng hoặc truy vấn DNS), OS Thread `M` chứa nó sẽ bị block.
-    *   *Giải pháp:* Go Runtime ngay lập tức ngắt liên kết giữa `P` và `M`. `P` sẽ được chuyển giao sang một Thread `M` rảnh khác để tiếp tục chạy các Goroutine còn lại. Khi tác vụ I/O của `M` cũ xong, `G` đó sẽ được nạp lại vào một hàng đợi `P` bất kỳ.
-3.  **Netpoller (Asynchronous Network I/O):**
-    Đối với I/O mạng, Go không dùng cơ chế chặn đồng bộ. Khi `G` thực hiện I/O mạng, nó sẽ được chuyển vào quản lý bởi **Netpoller** (dựa trên `epoll` của Linux hoặc `kqueue` của macOS) để ngủ. 
-    *   OS Thread `M` hoàn toàn không bị block và có thể lấy ngay một `G` khác để chạy. Khi gói tin mạng trả về, Netpoller sẽ đánh thức `G` dậy và chuyển về lại hàng đợi `P`.
-4.  **Asynchronous Preemption (Trưng dụng phi hợp tác):**
-    Từ Go 1.14, Go Runtime áp dụng cơ chế trưng dụng bằng cách định kỳ gửi tín hiệu OS (`SIGURG`) tới các thread đang chạy. Nếu phát hiện một `G` chiếm dụng luồng liên tục quá **10ms** (ví dụ vòng lặp vô hạn), Go sẽ cưỡng chế dừng `G` lại, đẩy về hàng đợi để nhường sân cho các `G` khác.
+1. **Work Stealing (Trộm việc):**
+   Khi một Thread `M` chạy hết tác vụ trong hàng đợi cục bộ của `P` đi kèm, thay vì đi ngủ (gây tốn chi phí Context Switch của OS), nó sẽ chủ động sang các `P` khác để **"trộm" lại 50% số lượng Goroutine** đang xếp hàng để xử lý phụ.
+2. **Hand-Off (Chuyển giao) khi gặp Blocking Syscall:**
+   Khi một Goroutine `G` thực hiện gọi một System Call đồng bộ (như đọc file từ đĩa cứng hoặc truy vấn DNS), OS Thread `M` chứa nó sẽ bị block.
+   - _Giải pháp:_ Go Runtime ngay lập tức ngắt liên kết giữa `P` và `M`. `P` sẽ được chuyển giao sang một Thread `M` rảnh khác để tiếp tục chạy các Goroutine còn lại. Khi tác vụ I/O của `M` cũ xong, `G` đó sẽ được nạp lại vào một hàng đợi `P` bất kỳ.
+3. **Netpoller (Asynchronous Network I/O):**
+   Đối với I/O mạng, Go không dùng cơ chế chặn đồng bộ. Khi `G` thực hiện I/O mạng, nó sẽ được chuyển vào quản lý bởi **Netpoller** (dựa trên `epoll` của Linux hoặc `kqueue` của macOS) để ngủ.
+   - OS Thread `M` hoàn toàn không bị block và có thể lấy ngay một `G` khác để chạy. Khi gói tin mạng trả về, Netpoller sẽ đánh thức `G` dậy và chuyển về lại hàng đợi `P`.
+4. **Asynchronous Preemption (Trưng dụng phi hợp tác):**
+   Từ Go 1.14, Go Runtime áp dụng cơ chế trưng dụng bằng cách định kỳ gửi tín hiệu OS (`SIGURG`) tới các thread đang chạy. Nếu phát hiện một `G` chiếm dụng luồng liên tục quá **10ms** (ví dụ vòng lặp vô hạn), Go sẽ cưỡng chế dừng `G` lại, đẩy về hàng đợi để nhường sân cho các `G` khác.
 
 ### Cách sử dụng cơ bản
 
