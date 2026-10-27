@@ -53,7 +53,7 @@ type Result struct {
 Edited implement.go
 Viewed implement.go:1-16
 
-Dòng code `jobChan := make(chan Job, len(jobs))` đang làm nhiệm vụ **khởi tạo một Buffered Channel** (Channel có bộ đệm). 
+Dòng code `jobChan := make(chan Job, len(jobs))` đang làm nhiệm vụ **khởi tạo một Buffered Channel** (Channel có bộ đệm).
 
 Dưới đây là giải thích chi tiết về lý do tại sao phải dùng `make` và cơ chế hoạt động "dưới nắp capo" (under the hood) của nó trong Go runtime.
 
@@ -102,7 +102,7 @@ Vì bạn truyền vào tham số thứ hai là `len(jobs)` (giả sử = 50), �
 func Worker(id int, jobs <-chan Job, results chan<- Result, wg *sync.WaitGroup) {
 	// Đảm bảo thông báo WaitGroup giảm đi 1 khi hàm này kết thúc
 	defer wg.Done()
-	
+
 	// Vòng lặp liên tục kéo việc từ channel.
 	// Vòng lặp này sẽ chặn (Block) worker nếu channel chưa có việc mới,
 	// và tự động thoát (break) khi channel `jobs` bị đóng.
@@ -144,7 +144,7 @@ func RunWorkerPool(numWorkers int, jobsList []Job) []Result {
 
 	// 3. Đợi tất cả các worker xử lý xong toàn bộ hàng đợi việc
 	wg.Wait()
-	
+
 	// 4. Đóng channel kết quả sau khi không còn worker nào ghi kết quả nữa
 	close(results)
 
